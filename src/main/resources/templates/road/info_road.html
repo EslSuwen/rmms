@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>道路详细信息：</title>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+</head>
+<body style="padding:8px;">
+<style>
+    .left th,
+    .left td {
+        display: block;
+        border-bottom: black solid 1px;
+    }
+
+    .left tr {
+        display: block;
+        float: left;
+    }
+
+    .left table {
+        display: block;
+        border: 0px solid;
+        /* border: 1px solid;  */
+        width: 250px;
+    }
+</style>
+<h3 class="title">道路详细信息：</h3>
+<button class="back" th:href="@{/road/list}">返回</button>
+<form th:action="@{/road/list}" method="get" th:object="${road}">
+    <div>
+        <span>道路编号:</span>
+        <input type="text" name="road_id" th:value="*{road_id}" placeholder="道路编号"><br>
+        <span>道路名称:</span>
+        <input type="text" name="road_name" th:value="*{road_name}" placeholder="道路名称"><br>
+        <span>路面信息:</span>
+        <input type="text" name="lmlx_lmlx" th:value="*{lmlx_lmlx}" placeholder="路面信息"><br>
+    </div>
+    <div>
+        <input type="submit" value=" 确定 "/>
+    </div>
+</form>
+
+<table>
+    <tr>
+        <td>
+            <table class="left" border="1" cellspacing="0">
+                <tr>
+                    <th width=120px>道路名称</th>
+                    <th width=120px>道路编号</th>
+                    <th width=120px>道路走向</th>
+                    <th width=120px>起点</th>
+                    <th width=120px>终点</th>
+                </tr>
+                <tr>
+                    <td width=120px>fsdf</td>
+                    <td width=120px>fsdfs</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                </tr>
+            </table>
+        <td>
+        <td>
+            <table class="left" border="1" cellspacing="0">
+                <tr>
+                    <th width=120px>设计单位</th>
+                    <th width=120px>施工单位</th>
+                    <th width=120px>道路等级</th>
+                    <th width=120px>路面等级</th>
+                    <th width=120px>设计时速</th>
+                </tr>
+                <tr>
+                    <td width=120px>fsdf</td>
+                    <td width=120px>fsdfs</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table class="left" border="1" cellspacing="0">
+                <tr>
+                    <th width=120px>路幅宽度范围</th>
+                    <th width=120px>道路长度</th>
+                    <th width=120px>道路面积</th>
+                    <th width=120px>AADT</th>
+                    <th width=120px>交通量等级</th>
+                </tr>
+                <tr>
+                    <td width=120px>fsdf</td>
+                    <td width=120px>fsdfs</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table class="left" border="1" cellspacing="0">
+                <tr>
+                    <th width=120px>所属乡镇</th>
+                    <th width=120px>管理分类</th>
+                    <th width=120px>管理单位</th>
+                    <th width=120px>养护单位</th>
+                    <th width=120px>建造年月</th>
+                </tr>
+                <tr>
+                    <td width=120px>fsdf</td>
+                    <td width=120px>fsdfs</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                    <td width=120px>ewrwe</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<table class="" border="1" cellspacing="0">
+    <tr>
+        <th rowspan="7" width=30px>车行道</th>
+        <th rowspan="2" width=100px>路面</th>
+        <th width=100px>类型</th>
+        <td width=100px></td>
+        <th rowspan="7" width=30px>人行道</th>
+        <th rowspan="7" width=30px>左侧</th>
+        <th width=100px>铺面类型</th>
+        <td width=100px></td>
+        <th rowspan="7" width=30px>分隔带</th>
+        <th rowspan="7" width=30px>左侧</th>
+        <th rowspan="3" width=100px>人行护栏</th>
+        <th width=100px>长度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+
+        <th width=100px>厚度</th>
+        <td width=100px></td>
+        <th width=100px>长度</th>
+        <td width=100px></td>
+        <th width=100px>高度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th rowspan="2" width=100px>基层</th>
+        <th width=100px>类型</th>
+        <td width=100px></td>
+        <th width=100px>宽度范围</th>
+        <td width=100px></td>
+        <th width=100px>类型</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th width=100px>厚度</th>
+        <td width=100px></td>
+        <th width=100px>直线面积</th>
+        <td width=100px></td>
+        <th colspan="2" width=100px>长度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=100px>车道数</th>
+        <td width=100px></td>
+        <th width=100px>交叉口面积</th>
+        <td width=100px></td>
+        <th colspan="2" width=100px>宽度范围</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=100px>通行方向</th>
+        <td width=100px></td>
+        <th width=100px>盲道长度</th>
+        <td width=100px></td>
+        <th colspan="2" width=100px>面积</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=100px>机动车道宽度范围</th>
+        <td width=100px></td>
+        <th width=100px>无障碍通道面积</th>
+        <td width=100px></td>
+        <th colspan="2" width=100px>类型</th>
+        <td width=115px></td>
+    </tr>
+</table>
+
+<table class="" border="1" cellspacing="0">
+    <tr>
+        <th rowspan="8" width=30px>车行道</th>
+        <th colspan="2" width=200px>左侧非机动车道宽度范围</th>
+        <td width=100px></td>
+        <th rowspan="13" width=30px>人行道</th>
+        <th rowspan="3" width=30px>左侧</th>
+        <th width=100px>绿化带面积</th>
+        <td width=100px></td>
+        <th rowspan="13" width=30px>分隔带</th>
+        <th rowspan="6" width=30px>中央</th>
+        <th rowspan="2" width=100px>护栏</th>
+        <th width=100px>高度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>右侧非机动车道宽度范围</th>
+        <td width=100px></td>
+        <th width=100px>侧石类型</th>
+        <td width=100px></td>
+        <th width=100px>高度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>车行道面积</th>
+        <td width=100px></td>
+        <th width=100px>平石类型</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>长度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>有无公交车专用道</th>
+        <td width=100px></td>
+        <th rowspan="10" width=30px>右侧</th>
+        <th width=100px>铺面类型</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>宽度范围</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th rowspan="2" width=100px>侧石</th>
+        <th width=100px>类型</th>
+        <td width=100px></td>
+        <th width=100px>长度</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>面积</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th width=100px>长度</th>
+        <td width=100px></td>
+        <th width=100px>宽度范围</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>类型</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th rowspan="2" width=100px>平石</th>
+        <th width=100px>类型</th>
+        <td width=100px></td>
+        <th width=100px>直线面积</th>
+        <td width=100px></td>
+        <th rowspan="7" width=30px>人行道</th>
+        <th rowspan="3" width=100px>人行护栏</th>
+        <th width=100px>长度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th width=100px>长度</th>
+        <td width=100px></td>
+        <th width=100px>交叉口面积</th>
+        <td width=100px></td>
+        <th width=100px>高度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th rowspan="6" width=30px>附属设施</th>
+        <th colspan="2" width=200px>检查井数量</th>
+        <td width=100px></td>
+        <th width=100px>盲道长度</th>
+        <td width=100px></td>
+        <th width=100px>类型</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>雨水口井数量</th>
+        <td width=100px></td>
+        <th width=100px>无障碍通道面积</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>长度</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>路名牌数量</th>
+        <td width=100px></td>
+        <th width=100px>绿化带面积</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>宽度范围</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>标志牌数量</th>
+        <td width=100px></td>
+        <th width=100px>侧石类型</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>面积</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>树池面积</th>
+        <td width=100px></td>
+        <th width=100px>平石类型</th>
+        <td width=100px></td>
+        <th colspan="2" width=200px>类型</th>
+        <td width=115px></td>
+    </tr>
+    <tr>
+        <th colspan="2" width=200px>其他</th>
+        <td colspan="11" width=615px></td>
+    </tr>
+</table>
+
+<script th:inline="javascript">
+
+    $(function () {
+
+        $(".back").click(function () {
+            var href = $(this).attr("href");
+            $(location).attr("href", href);
+        });
+    });
+
+</script>
+</body>
+</html>

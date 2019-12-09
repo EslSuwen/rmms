@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增用户</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+</head>
+<body style="padding:8px;">
+    <h3 class="title">新增用户</h3>
+    <form th:action="@{/user/create}" method="post" th:object="${user}">
+        <div>
+            <span>用户姓名:</span>
+            <input type="text" name="userName" placeholder="用户姓名"><br>
+            <span>用户账号:</span>
+            <input type="text" name="userNo" placeholder="用户账号"><br>
+            <span>用户密码:</span>
+            <input type="text" name="userPwd" placeholder="用户密码"><br>
+        </div>
+        <div>
+            <input type="submit" value=" 确定 "/>
+        </div>
+    </form>
+</body>
+</html>

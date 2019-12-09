@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'com.cqjtu'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+
+    compile('org.springframework.boot:spring-boot-devtools')
+
+    compile('org.springframework.boot:spring-boot-starter-aop')
+
+    compile('org.springframework:spring-context-support')
+
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+    compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.10')
+
+    compile('tk.mybatis:mapper-spring-boot-starter:2.1.5')
+
+    compile('com.alibaba:druid-spring-boot-starter:1.1.14')
+
+    compile('org.apache.commons:commons-lang3:3.8.1')
+
+    compile('mysql:mysql-connector-java:8.0.15')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+configurations {
+    providedRuntime
+    // remove default logger
+    all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
+test {
+    useJUnitPlatform()
+}

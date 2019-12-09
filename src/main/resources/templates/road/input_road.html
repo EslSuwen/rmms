@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增道路</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+</head>
+<body style="padding:8px;">
+    <h3 class="title">新增道路</h3>
+    <form th:action="@{/road/create}" method="post" th:object="${road}">
+        <div>
+            <span>道路编号:</span>
+            <input type="text" name="road_id" placeholder="道路编号" value="1"><br>
+            <span>道路名称:</span>
+            <input type="text" name="lmlx_lmlx" placeholder="道路名称" value="1"><br>
+            <span>路面信息:</span>
+            <input type="text" name="road_name" placeholder="路面信息" value="1"><br>
+        </div>
+        <div>
+            <input type="submit" value=" 确定 "/>
+        </div>
+    </form>
+</body>
+</html>
