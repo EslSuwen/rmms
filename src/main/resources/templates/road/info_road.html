@@ -42,7 +42,7 @@
     </div>
 </form>
 
-<table>
+<table th:object="${road}">
     <tr>
         <td>
             <table class="left" border="1" cellspacing="0">
@@ -54,7 +54,7 @@
                     <th width=120px>终点</th>
                 </tr>
                 <tr>
-                    <td width=120px>fsdf</td>
+                    <td width="120px"><input size="18" type="text" name="road_name" th:value="*{road_name}" placeholder="道路名称"></td>
                     <td width=120px>fsdfs</td>
                     <td width=120px>ewrwe</td>
                     <td width=120px>ewrwe</td>
