@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>登录页面</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+    <!--    <meta charset="UTF-8">-->
+    <!--    <title>登录页面</title>-->
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />-->
+    <!--    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>-->
+    <title>欢迎访问</title>
+    <link th:href="@{/css/style1.css}" rel="stylesheet" type="text/css" media="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- -->
+    <script>var __links = document.querySelectorAll('a');
+
+    function __linkClick(e) {
+        parent.window.postMessage(this.href, '*');
+    };
+    for (var i = 0, l = __links.length; i < l; i++) {
+        if (__links[i].getAttribute('data-t') == '_blank') {
+            __links[i].addEventListener('click', __linkClick, false);
+        }
+    }</script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script>$(document).ready(function (c) {
+        $('.alert-close').on('click', function (c) {
+            $('.message').fadeOut('slow', function (c) {
+                $('.message').remove();
+            });
+        });
+    });
+    </script>
+    <style>
+        body {
+            font-family: 'Droid Sans', sans-serif;
+            font-size: 100%;
+            background: url("[[@{/}]]/images/bg.jpg") no-repeat fixed center;
+            background-size: cover;
+        }
+    </style>
+
 </head>
 <body>
-<div>
+<!--<div>
     <div id="wrapper" style="text-align:center">
-        <div id="f_title">用户登录</div><br>
+        <div id="f_title">用户登录</div>
+        <br>
         <form th:action="@{/security/login}" method="post" th:object="${user}">
             <div class="f_row">
                 <span>用户编号:</span>
@@ -25,8 +60,34 @@
             </div>
         </form>
     </div>
+</div>-->
+
+<!-- contact-form -->
+<div class="message warning">
+    <div class="inset">
+        <div class="login-head">
+            <h1>请先登录</h1>
+            <div class="alert-close"></div>
+        </div>
+        <form th:action="@{/security/login}" method="post" th:object="${user}">
+            <li>
+                <input type="text" class="text" name="userNo" placeholder="请输入账号"><a href="#" class=" icon user"></a>
+            </li>
+            <div class="clear"></div>
+            <li>
+                <input type="password" name="userPwd" placeholder="请输入密码"><a href="#" class="icon lock"></a>
+            </li>
+            <div class="clear"></div>
+            <div class="submit">
+                <input type="submit" value="登录">
+                <input type="submit" value="注册" name="isSignUp">
+                <div class="clear"></div>
+            </div>
+
+        </form>
+    </div>
 </div>
-<div id="footer">
+<div id="footer" class="footer">
     轻量级城镇道路养护信息管理系统-测试版（版本:Beta1.0 Build:#1 2019-12-9）
 </div>
 </body>

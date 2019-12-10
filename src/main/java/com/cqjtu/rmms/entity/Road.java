@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Random;
 
 @Component
 @Table(name = "road_info")
@@ -648,4 +649,9 @@ public class Road implements Serializable {
     public void setRoad_del(String road_del) {
         this.road_del = road_del;
     }
+
+    public String getFakeData() {
+        return "" + new Random().nextInt(10000);
+    }
+
 }

@@ -1,68 +1,145 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>主页</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>记账小程序</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <script th:src="@{/assets/js/browser.min.js}"></script>
+    <script th:src="@{/assets/js/breakpoints.min.js}"></script>
+    <script th:src="@{/assets/js/transition.js}"></script>
+    <script th:src="@{/assets/js/owl-carousel.js}"></script>
+    <script th:src="@{/assets/js/custom.js}"></script>
+
 </head>
-<body>
-<div id="header">
-    <div id="productName">轻量级城镇道路养护信息管理系统</div>
-    <div></div>
-    <div style="float:right; margin:10px;">
-        操作员:[[${user.userName}]]&nbsp;
-        <a th:href="@{/security/logout}" title="点击离开系统" id="logout"><span style="cursor: pointer" class="linkspan">离开系统</span></a>
-    </div>
-</div>
-<div>
-    <div id="navigator">
-        <div class="menuitem">
-            <a th:href="@{/user/toInput}" target="contentFrame">新增用户</a>
-        </div>
-        <div class="menuitem">
-            <a th:href="@{/user/list}"  target="contentFrame">用户管理</a>
-        </div>
-        <div class="seperator"></div>
-        <div class="menuitem">
-            <a th:href="@{/road/toInput}" target="contentFrame">新增道路</a>
-        </div>
-        <div class="menuitem">
-            <a th:href="@{/road/list}"  target="contentFrame">道路管理</a>
-        </div>
-        <div class="seperator"></div>
-        <div class="menuitem">
-            <a th:href="@{/courseType/toInput}" target="contentFrame">新增课程类型</a>
-        </div>
-        <div class="menuitem">
-            <a th:href="@{/courseType/list}"  target="contentFrame">课程类型管理</a>
-        </div>
-        <div class="seperator"></div>
-        <div class="menuitem">
-            <a th:href="@{/course/toInput}"  target="contentFrame">实验室排课申请</a>
-        </div>
-        <div class="menuitem">
-            <a th:href="@{/course/list}" target="contentFrame">实验室排课管理</a>
-        </div>
-    </div>
-    <div id="content">
-        <iframe id="contentFrame" width="100%" scrolling="auto" height="100%" frameborder="0" name="contentFrame" allowtransparency="true" th:src="@{/welcome.html}">
-        </iframe>
-    </div>
-</div>
-<div id="footer">
-    轻量级城镇道路养护信息管理系统-测试版（版本:Beta1.0 Build:#1 2019-12-9）
-</div>
-<script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
-<script  th:inline="javascript">
 
-    $("#logout").click(function () {
+<body class="is-preload">
 
-        if(confirm('您真的要离开系统吗？')){
-            $(location).attr("href",this.href());
-        }
-        return false;
-    });
+<!-- Wrapper -->
+<div id="wrapper">
 
-</script>
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <div class="logo">
+                    <a href="index.html">记账小程序</a>
+                </div>
+            </header>
+
+            <!-- Banner -->
+            <section class="main-banner">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="banner-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="banner-caption">
+                                            <h4>你好, 欢迎使用<em>记账小程序。</em></h4>
+                                            <span>AWESOME HTML5 &amp; CSS3 TEMPLATE</span>
+                                            <p>是不是长期处于<strong>月光状态</strong>呢？
+                                                是不是每个月到手的钱不少却总是感觉<strong>缺钱</strong>呢？
+                                                是不是总不知钱花到哪里去了呢？尝试开始<strong>记账</strong>吧！</p>
+                                            <div class="primary-button">
+                                                <a href="add.html">尝试记账</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Right Image -->
+            <section class="right-image">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="left-content">
+                                <h4>为什么要记账？</h4>
+                                <p>约束乱消费行为：如果你平时花钱大手大脚，有记账行为的时候，心理更容易产生负罪感，潜意识里会自觉适当约束自己大额的开支。
+                                    <br><br>
+                                    管理消费体系：记账三五个月后，就可以从数据中整理分析出自己的消费体系了，哪些方面开销巨大可以缩减也一目了然。
+                                    <br><br>
+                                    培养个人意志：记账本身是一个繁琐而枯燥的过程，如果能够坚持下来，本身也是一个磨炼意志，提高自身耐心和细致度的挑战。
+                                </p>
+                                <div class="primary-button">
+                                    <a href="add.html">尝试记账</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img th:src="@{/assets/images/right-image.jpg}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+        <div class="inner">
+
+            <!-- Search Box -->
+            <section id="search" class="alt">
+                <form method="get" action="AccountServlet?method=search">
+                    <input type="text" name="search" id="search" placeholder="Search..."/>
+                </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <ul>
+                    <li><a href="main.html">Homepage</a></li>
+                    <li><a href="add.html">新增消费账单</a></li>
+                    <li><a href="AccountServlet?method=delete">删除消费账单</a></li>
+                    <li><a href="AccountServlet?method=list">修改消费账单</a></li>
+                    <li><a href="search.html">查询消费账单</a></li>
+                    <li><a href="AccountServlet?method=show">查看所有账单</a></li>
+                </ul>
+            </nav>
+
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">Copyright &copy; 2019
+            </footer>
+
+        </div>
+    </div>
+
+</div>
+
+
 </body>
+
+
+</body>
+
 </html>
