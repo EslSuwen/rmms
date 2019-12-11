@@ -24,7 +24,6 @@ public class RoadController {
     @GetMapping("/toInput")
     public String input(Map<String, Object> map) {
         map.put("road", new Road());
-
         return "road/input_road";
     }
 
@@ -55,7 +54,7 @@ public class RoadController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 6);
+        PageHelper.startPage(pageNo, 4);
         List<Road> roadList=roadService.loadAll();
 
         PageInfo<Road> page = new PageInfo<>(roadList);

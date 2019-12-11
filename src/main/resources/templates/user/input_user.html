@@ -1,25 +1,200 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>新增用户</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>RMMS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
+
+    <style type="text/css">
+        .a {
+            margin-top: 20px;
+        }
+
+        .b {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: transparent;
+            display: inline-block;
+            padding: 4px 20px;
+            color: #535ba0;
+            border: 2px solid #535ba0;
+            transition: all 0.5s;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .b :hover {
+            color: #fff;
+            background-color: rgba(83, 91, 160, 1);
+
+        }
+    </style>
+
 </head>
-<body style="padding:8px;">
-    <h3 class="title">新增用户</h3>
-    <form th:action="@{/user/create}" method="post" th:object="${user}">
-        <div>
-            <span>用户姓名:</span>
-            <input type="text" name="userName" placeholder="用户姓名"><br>
-            <span>用户账号:</span>
-            <input type="text" name="userNo" placeholder="用户账号"><br>
-            <span>用户密码:</span>
-            <input type="text" name="userPwd" placeholder="用户密码"><br>
+
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <div class="logo">
+                    <a th:href="@{/security/mainController}">轻量级城镇道路养护信息管理系统</a>
+                </div>
+            </header>
+
+            <!-- Banner -->
+            <section class="main-banner">
+                <div class="container-fluid">
+                    <div align="center">
+                        <h3 class="title">新增用户</h3>
+                        <form th:action="@{/user/create}" method="post" th:object="${user}">
+                            <div>
+                                <span>用户姓名:</span>
+                                <input class="a" type="text" name="userName" placeholder="用户姓名"><br>
+                                <span>用户账号:</span>
+                                <input class="a" type="text" name="userNo" placeholder="用户账号"><br>
+                                <span>用户密码:</span>
+                                <input class="a" type="text" name="userPwd" placeholder="用户密码"><br>
+                            </div>
+                            <button class="b" type="submit">确定</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
         </div>
-        <div>
-            <input type="submit" value=" 确定 "/>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+        <div class="inner">
+
+            <!-- Search Box -->
+            <section id="search" class="alt">
+                <form method="get" action="#">
+                    <input type="text" name="search" id="search" placeholder="Search..."/>
+                </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <ul>
+                    <li><a th:href="@{/security/mainController}">主页</a></li>
+                    <!--用户-->
+                    <li>
+                        <span class="opener">用户</span>
+                        <ul>
+                            <li><a th:href="@{/user/toInput}">新增用户 #1</a></li>
+                            <li><a th:href="@{/user/list}">用户管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--道路-->
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}" getFakeData()>道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--课程类型-->
+                    <li>
+                        <span class="opener">课程类型</span>
+                        <ul>
+                            <li><a th:href="@{/courseType/toInput}">新增课程类型</a></li>
+                            <li><a th:href="@{/courseType/list}">课程类型管理</a></li>
+                        </ul>
+                    </li>
+                    <!--实验室排课-->
+                    <li>
+                        <span class="opener">实验室排课</span>
+                        <ul>
+                            <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
+                            <li><a th:href="@{/course/list}">实验室排课管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}" getFakeData()>道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">External Link</a></li>
+                </ul>
+            </nav>
+
+            <!-- Featured Posts -->
+            <div class="featured-posts">
+                <div class="heading">
+                    <h2>Featured Posts</h2>
+                </div>
+                <div class="owl-carousel owl-theme">
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured one">
+                            <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured two">
+                            <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured three">
+                            <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">Copyright &copy; 2019 Company Name
+                    <br>Designed by CQJTU <a href="http://www.cqjtu.edu.cn/" target="_blank"
+                                             title="重庆交通大学">重庆交通大学</a></p>
+            </footer>
+
         </div>
-    </form>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/transition.js}"></script>
+<script th:src="@{/assets/js/owl-carousel.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
 </body>
+
+
 </html>

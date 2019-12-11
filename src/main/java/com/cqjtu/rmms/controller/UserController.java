@@ -56,7 +56,7 @@ public class UserController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 6);
+        PageHelper.startPage(pageNo, 4);
         List<User> userList=userService.loadAll();
 
         PageInfo<User> page = new PageInfo<>(userList);

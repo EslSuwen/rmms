@@ -1,411 +1,935 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>道路详细信息：</title>
-    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
-    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>RMMS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
+
+    <style type="text/css">
+        .a {
+            margin-top: 20px;
+        }
+
+        .b {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: transparent;
+            display: inline-block;
+            padding: 4px 20px;
+            color: #535ba0;
+            border: 2px solid #535ba0;
+            transition: all 0.5s;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .b :hover {
+            color: #fff;
+            background-color: rgba(83, 91, 160, 1);
+
+        }
+
+        th,
+        td {
+            height: 25px;
+            padding: 5px 5px 5px 5px !important;
+        }
+
+        #main > .inner {
+            padding: 100px 50px !important;
+        }
+
+    </style>
+
 </head>
-<body style="padding:8px;">
-<style>
-    .left th,
-    .left td {
-        display: block;
-        border-bottom: black solid 1px;
-    }
 
-    .left tr {
-        display: block;
-        float: left;
-    }
+<body class="is-preload">
 
-    .left table {
-        display: block;
-        border: 0px solid;
-        /* border: 1px solid;  */
-        width: 250px;
-    }
+<!-- Wrapper -->
+<div id="wrapper">
 
-    th,
-    td {
-        height: 25px;
-    }
-</style>
-<h3 class="title">道路详细信息：</h3>
-<button class="back" th:href="@{/road/list}">返回</button>
-<form th:action="@{/road/list}" method="get" th:object="${road}">
-    <div>
-        <span>道路编号:</span>
-        <input type="text" name="road_id" th:value="*{road_id}" placeholder="道路编号"><br>
-        <span>道路名称:</span>
-        <input type="text" name="road_name" th:value="*{road_name}" placeholder="道路名称"><br>
-        <span>路面信息:</span>
-        <input type="text" name="lmlx_lmlx" th:value="*{lmlx_lmlx}" placeholder="路面信息"><br>
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <div class="logo">
+                    <a th:href="@{/security/mainController}">轻量级城镇道路养护信息管理系统</a>
+                </div>
+            </header>
+
+            <!-- Banner -->
+            <section class="main-banner">
+                <div class="container-fluid">
+                    <div align="center">
+                        <h3 class="title">道路详细信息：</h3>
+                        <div id="dg" style="z-index: 9999; position: fixed ! important; right: 30px; top: 700px;">
+                            <table width="" 100% style="position: absolute; width:260px; right: 0px; top: 0px;">
+<!--                                //table 内部控件代码-->
+                                <a th:href="@{/road/list}"><button>返回</button></a>
+                            </table>
+                        </div>
+<!--
+                        <table th:object="${road}" border="1" cellspacing="0">
+                            <tr>
+                                <th width=129px>道路名称</th>
+                                <td width="129px"><input size="18" type="text" name="road_name" th:value="*{road_name}"
+                                                         placeholder="道路名称">
+                                </td>
+                                <th width=129px>设计单位</th>
+                                <td width=129px><input size="18" type="text" name="road_sjdw" th:value="*{road_sjdw}"
+                                                       placeholder="设计单位">
+                                </td>
+                                <th width=129px>路幅宽度范围</th>
+                                <td width=129px><input size="18" type="text" name="road_lfkdfw"
+                                                       th:value="*{road_lfkdfw}"
+                                                       placeholder="路幅宽度范围"></td>
+                                <th width=129px>所属乡镇</th>
+                                <td width=129px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
+                                                       placeholder="所属乡镇">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width=129px>道路编号</th>
+                                <td width=129px><input size="18" type="text" name="road_id" th:value="*{road_id}"
+                                                       placeholder="道路编号">
+                                </td>
+                                <th width=129px>施工单位</th>
+                                <td width=129px><input size="18" type="text" name="road_sgdw" th:value="*{road_sgdw}"
+                                                       placeholder="施工单位">
+                                </td>
+                                <th width=129px>道路长度</th>
+                                <td width=129px><input size="18" type="text" name="road_dlcd" th:value="*{road_dlcd}"
+                                                       placeholder="道路长度">
+                                </td>
+                                <th width=129px>管理分类</th>
+                                <td width=129px><input size="18" type="text" name="road_glfl" th:value="*{road_glfl}"
+                                                       placeholder="管理分类">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th width=129px>道路走向</th>
+                                <td width=129px><input size="18" type="text" name="road_zx" th:value="*{road_zx}"
+                                                       placeholder="道路走向">
+                                </td>
+                                <th width=129px>道路等级</th>
+                                <td width=129px><input size="18" type="text" name="road_dldj" th:value="*{road_dldj}"
+                                                       placeholder="道路等级">
+                                </td>
+                                <th width=129px>道路面积</th>
+                                <td width=129px><input size="18" type="text" name="road_dlmj" th:value="*{road_dlmj}"
+                                                       placeholder="道路面积">
+                                </td>
+                                <th width=129px>管理单位</th>
+                                <td width=129px><input size="18" type="text" name="road_gldw" th:value="*{road_gldw}"
+                                                       placeholder="管理单位">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width=129px>起点</th>
+                                <td width=129px><input size="18" type="text" name="road_qd" th:value="*{road_qd}"
+                                                       placeholder="起点"></td>
+                                <th width=129px>路面等级</th>
+                                <td width=129px><input size="18" type="text" name="road_lmdj" th:value="*{road_lmdj}"
+                                                       placeholder="路面等级">
+                                </td>
+                                <th width=129px>AADT</th>
+                                <td width=129px><input size="18" type="text" name="road_AADT" th:value="*{road_AADT}"
+                                                       placeholder="AADT">
+                                </td>
+                                <th width=129px>养护单位</th>
+                                <td width=129px><input size="18" type="text" name="road_yhdw" th:value="*{road_yhdw}"
+                                                       placeholder="养护单位">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width=129px>终点</th>
+                                <td width=129px><input size="18" type="text" name="road_zd" th:value="*{road_zd}"
+                                                       placeholder="终点"></td>
+                                <th width=129px>设计时速</th>
+                                <td width=129px><input size="18" type="text" name="road_sjss" th:value="*{road_sjss}"
+                                                       placeholder="设计时速">
+                                </td>
+
+                                <th width=129px>交通量等级</th>
+                                <td width=129px><input size="18" type="text" name="road_jtldj" th:value="*{road_jtldj}"
+                                                       placeholder="交通量等级">
+                                </td>
+                                <th width=129px>建造年月</th>
+
+                                <td width=129px><input size="18" type="text" name="road_jzny" th:value="*{road_jzny}"
+                                                       placeholder="建造年月">
+                                </td>
+
+                            </tr>
+                        </table>
+
+                        <table th:object="${road}" border="1" cellspacing="0">
+                            <tr>
+                                <th rowspan="7" width=30px>车行道</th>
+                                <th rowspan="2" width=100px>路面</th>
+                                <th width=100px>类型</th>
+                                <td width=100px><input size="18" type="text" name="lmlx_lmlx" th:value="*{lmlx_lmlx}"
+                                                       placeholder="类型"></td>
+                                <th rowspan="7" width=30px>人行道</th>
+                                <th rowspan="7" width=30px>左侧</th>
+                                <th width=100px>铺面类型</th>
+                                <td width=100px><input size="18" type="text" th:value="*{getFakeData()}"
+                                                       placeholder="铺面类型"></td>
+                                <th rowspan="7" width=30px>分隔带</th>
+                                <th rowspan="7" width=30px>左侧</th>
+                                <th rowspan="3" width=100px>人行护栏</th>
+                                <th width=100px>长度</th>
+                                <td width=115px><input size="18" type="text" th:value="*{getFakeData()}"
+                                                       placeholder="长度"></td>
+                            </tr>
+                            <tr>
+
+                                <th width=100px>厚度</th>
+                                <td width=100px><input size="18" type="text" name="road_lmhd" th:value="*{road_lmhd}"
+                                                       placeholder="厚度"></td>
+                                <th width=100px>长度</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="长度"></td>
+                                <th width=100px>高度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="高度"></td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" width=100px>基层</th>
+                                <th width=100px>类型</th>
+                                <td width=100px><input size="18" type="text" name="road_jclx" th:value="*{road_jclx}"
+                                                       placeholder="类型"></td>
+                                <th width=100px>宽度范围</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="宽度范围"></td>
+                                <th width=100px>类型</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th width=100px>厚度</th>
+                                <td width=100px><input size="18" type="text" name="road_jchd" th:value="*{road_jchd}"
+                                                       placeholder="厚度"></td>
+                                <th width=100px>直线面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="直线面积"></td>
+                                <th colspan="2" width=100px>长度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="长度"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=100px>车道数</th>
+                                <td width=100px><input size="18" type="text" name="road_cds" th:value="*{road_cds}"
+                                                       placeholder="车道数"></td>
+                                <th width=100px>交叉口面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="交叉口面积"></td>
+                                <th colspan="2" width=100px>宽度范围</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="宽度范围"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=100px>通行方向</th>
+                                <td width=100px><input size="18" type="text" name="road_txfx" th:value="*{road_txfx}"
+                                                       placeholder="通行方向"></td>
+                                <th width=100px>盲道长度</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="盲道长度"></td>
+                                <th colspan="2" width=100px>面积</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="面积"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=100px>机动车道宽度范围</th>
+                                <td width=100px><input size="18" type="text" name="road_jdcdkdfw"
+                                                       th:value="*{road_jdcdkdfw}"
+                                                       placeholder="机动车道宽度范围"></td>
+                                <th width=100px>无障碍通道面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="无障碍通道面积"></td>
+                                <th colspan="2" width=100px>类型</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                        </table>
+
+                        <table th:object="${road}" border="1" cellspacing="0">
+                            <tr>
+                                <th rowspan="8" width=30px>车行道</th>
+                                <th colspan="2" width=200px>左侧非机动车道宽度范围</th>
+                                <td width=100px><input size="18" type="text" name="road_zcfjdcdkdfw"
+                                                       th:value="*{road_zcfjdcdkdfw}"
+                                                       placeholder="左侧非机动车道宽度范围"></td>
+                                <th rowspan="13" width=30px>人行道</th>
+                                <th rowspan="3" width=30px>左侧</th>
+                                <th width=100px>绿化带面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th rowspan="13" width=30px>分隔带</th>
+                                <th rowspan="6" width=30px>中央</th>
+                                <th rowspan="2" width=100px>护栏</th>
+                                <th width=100px>高度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>右侧非机动车道宽度范围</th>
+                                <td width=100px><input size="18" type="text" name="road_ycfjdcdkdfw"
+                                                       th:value="*{road_ycfjdcdkdfw}"
+                                                       placeholder="右侧非机动车道宽度范围"></td>
+                                <th width=100px>侧石类型</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th width=100px>高度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>车行道面积</th>
+                                <td width=100px><input size="18" type="text" name="road_cxdmj" th:value="*{road_cxdmj}"
+                                                       placeholder="车行道面积"></td>
+                                <th width=100px>平石类型</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>长度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>有无公交车专用道</th>
+                                <td width=100px><input size="18" type="text" name="road_ywgjczyd"
+                                                       th:value="*{road_ywgjczyd}"
+                                                       placeholder="有无公交车专用道"></td>
+                                <th rowspan="10" width=30px>右侧</th>
+                                <th width=100px>铺面类型</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>宽度范围</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" width=100px>侧石</th>
+                                <th width=100px>类型</th>
+                                <td width=100px><input size="18" type="text" name="road_cslx" th:value="*{road_cslx}"
+                                                       placeholder="侧石类型"></td>
+                                <th width=100px>长度</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>面积</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th width=100px>长度</th>
+                                <td width=100px><input size="18" type="text" name="road_cscd" th:value="*{road_cscd}"
+                                                       placeholder="侧石长度"></td>
+                                <th width=100px>宽度范围</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>类型</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" width=100px>平石</th>
+                                <th width=100px>类型</th>
+                                <td width=100px><input size="18" type="text" name="road_pslx" th:value="*{road_pslx}"
+                                                       placeholder="平石类型"></td>
+                                <th width=100px>直线面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th rowspan="7" width=30px>人行道</th>
+                                <th rowspan="3" width=100px>人行护栏</th>
+                                <th width=100px>长度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th width=100px>长度</th>
+                                <td width=100px><input size="18" type="text" name="road_pscd" th:value="*{road_pscd}"
+                                                       placeholder="平石长度"></td>
+                                <th width=100px>交叉口面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th width=100px>高度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th rowspan="6" width=30px>附属设施</th>
+                                <th colspan="2" width=200px>检查井数量</th>
+                                <td width=100px><input size="18" type="text" name="road_jcjsl" th:value="*{road_jcjsl}"
+                                                       placeholder="检查井数量"></td>
+                                <th width=100px>盲道长度</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th width=100px>类型</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>雨水口井数量</th>
+                                <td width=100px><input size="18" type="text" name="road_ysksl" th:value="*{road_ysksl}"
+                                                       placeholder="雨水口井数量"></td>
+                                <th width=100px>无障碍通道面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>长度</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>路名牌数量</th>
+                                <td width=100px><input size="18" type="text" name="road_lmpsl" th:value="*{road_lmpsl}"
+                                                       placeholder="路名牌数量"></td>
+                                <th width=100px>绿化带面积</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>宽度范围</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>标志牌数量</th>
+                                <td width=100px><input size="18" type="text" name="road_bzpsl" th:value="*{road_bzpsl}"
+                                                       placeholder="标志牌数量"></td>
+                                <th width=100px>侧石类型</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>面积</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>树池面积</th>
+                                <td width=100px><input size="18" type="text" name="road_scmj" th:value="*{road_scmj}"
+                                                       placeholder="树池面积"></td>
+                                <th width=100px>平石类型</th>
+                                <td width=100px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                                <th colspan="2" width=200px>类型</th>
+                                <td width=115px><input size="18" type="text" name="getFakeData()"
+                                                       th:value="*{getFakeData()}"
+                                                       placeholder="类型"></td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" width=200px>其他</th>
+                                <td colspan="11" width=615px><input size="18" type="text" name="road_qt"
+                                                                    th:value="*{road_qt}"
+                                                                    placeholder="其他"></td>
+                            </tr>
+                        </table>-->
+
+                    <form th:action="@{/road/update}" method="post" th:object="${road}">
+                        <div>
+                            <table border="1" cellspacing="0">
+                                <tr>
+                                    <th width=129px>道路名称</th>
+                                    <td width="129px"><input size="18" type="text" name="road_name" th:value="*{road_name}" placeholder="道路名称">
+                                    </td>
+                                    <th width=129px>设计单位</th>
+                                    <td width=129px><input size="18" type="text" name="road_sjdw" th:value="*{road_sjdw}" placeholder="设计单位">
+                                    </td>
+                                    <th width=129px>路幅宽度范围</th>
+                                    <td width=129px><input size="18" type="text" name="road_lfkdfw" th:value="*{road_lfkdfw}"
+                                                           placeholder="路幅宽度范围"></td>
+                                    <th width=129px>所属乡镇</th>
+                                    <td width=129px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}" placeholder="所属乡镇">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th width=129px>道路编号</th>
+                                    <td width=129px><input size="18" type="text" name="road_id" th:value="*{road_id}" placeholder="道路编号">
+                                    </td>
+                                    <th width=129px>施工单位</th>
+                                    <td width=129px><input size="18" type="text" name="road_sgdw" th:value="*{road_sgdw}" placeholder="施工单位">
+                                    </td>
+                                    <th width=129px>道路长度</th>
+                                    <td width=129px><input size="18" type="text" name="road_dlcd" th:value="*{road_dlcd}" placeholder="道路长度">
+                                    </td>
+                                    <th width=129px>管理分类</th>
+                                    <td width=129px><input size="18" type="text" name="road_glfl" th:value="*{road_glfl}" placeholder="管理分类">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th width=129px>道路走向</th>
+                                    <td width=129px><input size="18" type="text" name="road_zx" th:value="*{road_zx}" placeholder="道路走向">
+                                    </td>
+                                    <th width=129px>道路等级</th>
+                                    <td width=129px><input size="18" type="text" name="road_dldj" th:value="*{road_dldj}" placeholder="道路等级">
+                                    </td>
+                                    <th width=129px>道路面积</th>
+                                    <td width=129px><input size="18" type="text" name="road_dlmj" th:value="*{road_dlmj}" placeholder="道路面积">
+                                    </td>
+                                    <th width=129px>管理单位</th>
+                                    <td width=129px><input size="18" type="text" name="road_gldw" th:value="*{road_gldw}" placeholder="管理单位">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th width=129px>起点</th>
+                                    <td width=129px><input size="18" type="text" name="road_qd" th:value="*{road_qd}" placeholder="起点"></td>
+                                    <th width=129px>路面等级</th>
+                                    <td width=129px><input size="18" type="text" name="road_lmdj" th:value="*{road_lmdj}" placeholder="路面等级">
+                                    </td>
+                                    <th width=129px>AADT</th>
+                                    <td width=129px><input size="18" type="text" name="road_AADT" th:value="*{road_AADT}" placeholder="AADT">
+                                    </td>
+                                    <th width=129px>养护单位</th>
+                                    <td width=129px><input size="18" type="text" name="road_yhdw" th:value="*{road_yhdw}" placeholder="养护单位">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th width=129px>终点</th>
+                                    <td width=129px><input size="18" type="text" name="road_zd" th:value="*{road_zd}" placeholder="终点"></td>
+                                    <th width=129px>设计时速</th>
+                                    <td width=129px><input size="18" type="text" name="road_sjss" th:value="*{road_sjss}" placeholder="设计时速">
+                                    </td>
+
+                                    <th width=129px>交通量等级</th>
+                                    <td width=129px><input size="18" type="text" name="road_jtldj" th:value="*{road_jtldj}" placeholder="交通量等级">
+                                    </td>
+                                    <th width=129px>建造年月</th>
+
+                                    <td width=129px><input size="18" type="text" name="road_jzny" th:value="*{road_jzny}" placeholder="建造年月">
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                            <table border="1" cellspacing="0">
+                                <tr>
+                                    <th rowspan="7" width=30px>车行道</th>
+                                    <th rowspan="2" width=100px>路面</th>
+                                    <th width=100px>类型</th>
+                                    <td width=100px><input size="18" type="text" name="lmlx_lmlx" th:value="*{lmlx_lmlx}"
+                                                           placeholder="类型"></td>
+                                    <th rowspan="7" width=30px>人行道</th>
+                                    <th rowspan="7" width=30px>左侧</th>
+                                    <th width=100px>铺面类型</th>
+                                    <td width=100px><input size="18" type="text" th:value="*{getFakeData()}"
+                                                           placeholder="铺面类型"></td>
+                                    <th rowspan="7" width=30px>分隔带</th>
+                                    <th rowspan="7" width=30px>左侧</th>
+                                    <th rowspan="3" width=100px>人行护栏</th>
+                                    <th width=100px>长度</th>
+                                    <td width=115px><input size="18" type="text" th:value="*{getFakeData()}"
+                                                           placeholder="长度"></td>
+                                </tr>
+                                <tr>
+
+                                    <th width=100px>厚度</th>
+                                    <td width=100px><input size="18" type="text" name="road_lmhd" th:value="*{road_lmhd}"
+                                                           placeholder="厚度"></td>
+                                    <th width=100px>长度</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="长度"></td>
+                                    <th width=100px>高度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="高度"></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2" width=100px>基层</th>
+                                    <th width=100px>类型</th>
+                                    <td width=100px><input size="18" type="text" name="road_jclx" th:value="*{road_jclx}"
+                                                           placeholder="类型"></td>
+                                    <th width=100px>宽度范围</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="宽度范围"></td>
+                                    <th width=100px>类型</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th width=100px>厚度</th>
+                                    <td width=100px><input size="18" type="text" name="road_jchd" th:value="*{road_jchd}"
+                                                           placeholder="厚度"></td>
+                                    <th width=100px>直线面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="直线面积"></td>
+                                    <th colspan="2" width=100px>长度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="长度"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=100px>车道数</th>
+                                    <td width=100px><input size="18" type="text" name="road_cds" th:value="*{road_cds}"
+                                                           placeholder="车道数"></td>
+                                    <th width=100px>交叉口面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="交叉口面积"></td>
+                                    <th colspan="2" width=100px>宽度范围</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="宽度范围"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=100px>通行方向</th>
+                                    <td width=100px><input size="18" type="text" name="road_txfx" th:value="*{road_txfx}"
+                                                           placeholder="通行方向"></td>
+                                    <th width=100px>盲道长度</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="盲道长度"></td>
+                                    <th colspan="2" width=100px>面积</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="面积"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=100px>机动车道宽度范围</th>
+                                    <td width=100px><input size="18" type="text" name="road_jdcdkdfw"
+                                                           th:value="*{road_jdcdkdfw}"
+                                                           placeholder="机动车道宽度范围"></td>
+                                    <th width=100px>无障碍通道面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="无障碍通道面积"></td>
+                                    <th colspan="2" width=100px>类型</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                            </table>
+
+                            <table border="1" cellspacing="0">
+                                <tr>
+                                    <th rowspan="8" width=30px>车行道</th>
+                                    <th colspan="2" width=200px>左侧非机动车道宽度范围</th>
+                                    <td width=100px><input size="18" type="text" name="road_zcfjdcdkdfw"
+                                                           th:value="*{road_zcfjdcdkdfw}"
+                                                           placeholder="左侧非机动车道宽度范围"></td>
+                                    <th rowspan="13" width=30px>人行道</th>
+                                    <th rowspan="3" width=30px>左侧</th>
+                                    <th width=100px>绿化带面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th rowspan="13" width=30px>分隔带</th>
+                                    <th rowspan="6" width=30px>中央</th>
+                                    <th rowspan="2" width=100px>护栏</th>
+                                    <th width=100px>高度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>右侧非机动车道宽度范围</th>
+                                    <td width=100px><input size="18" type="text" name="road_ycfjdcdkdfw"
+                                                           th:value="*{road_ycfjdcdkdfw}"
+                                                           placeholder="右侧非机动车道宽度范围"></td>
+                                    <th width=100px>侧石类型</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th width=100px>高度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>车行道面积</th>
+                                    <td width=100px><input size="18" type="text" name="road_cxdmj" th:value="*{road_cxdmj}"
+                                                           placeholder="车行道面积"></td>
+                                    <th width=100px>平石类型</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>长度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>有无公交车专用道</th>
+                                    <td width=100px><input size="18" type="text" name="road_ywgjczyd"
+                                                           th:value="*{road_ywgjczyd}"
+                                                           placeholder="有无公交车专用道"></td>
+                                    <th rowspan="10" width=30px>右侧</th>
+                                    <th width=100px>铺面类型</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>宽度范围</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2" width=100px>侧石</th>
+                                    <th width=100px>类型</th>
+                                    <td width=100px><input size="18" type="text" name="road_cslx" th:value="*{road_cslx}"
+                                                           placeholder="侧石类型"></td>
+                                    <th width=100px>长度</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>面积</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th width=100px>长度</th>
+                                    <td width=100px><input size="18" type="text" name="road_cscd" th:value="*{road_cscd}"
+                                                           placeholder="侧石长度"></td>
+                                    <th width=100px>宽度范围</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>类型</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2" width=100px>平石</th>
+                                    <th width=100px>类型</th>
+                                    <td width=100px><input size="18" type="text" name="road_pslx" th:value="*{road_pslx}"
+                                                           placeholder="平石类型"></td>
+                                    <th width=100px>直线面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th rowspan="7" width=30px>人行道</th>
+                                    <th rowspan="3" width=100px>人行护栏</th>
+                                    <th width=100px>长度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th width=100px>长度</th>
+                                    <td width=100px><input size="18" type="text" name="road_pscd" th:value="*{road_pscd}"
+                                                           placeholder="平石长度"></td>
+                                    <th width=100px>交叉口面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th width=100px>高度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="6" width=30px>附属设施</th>
+                                    <th colspan="2" width=200px>检查井数量</th>
+                                    <td width=100px><input size="18" type="text" name="road_jcjsl" th:value="*{road_jcjsl}"
+                                                           placeholder="检查井数量"></td>
+                                    <th width=100px>盲道长度</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th width=100px>类型</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>雨水口井数量</th>
+                                    <td width=100px><input size="18" type="text" name="road_ysksl" th:value="*{road_ysksl}"
+                                                           placeholder="雨水口井数量"></td>
+                                    <th width=100px>无障碍通道面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>长度</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>路名牌数量</th>
+                                    <td width=100px><input size="18" type="text" name="road_lmpsl" th:value="*{road_lmpsl}"
+                                                           placeholder="路名牌数量"></td>
+                                    <th width=100px>绿化带面积</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>宽度范围</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>标志牌数量</th>
+                                    <td width=100px><input size="18" type="text" name="road_bzpsl" th:value="*{road_bzpsl}"
+                                                           placeholder="标志牌数量"></td>
+                                    <th width=100px>侧石类型</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>面积</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>树池面积</th>
+                                    <td width=100px><input size="18" type="text" name="road_scmj" th:value="*{road_scmj}"
+                                                           placeholder="树池面积"></td>
+                                    <th width=100px>平石类型</th>
+                                    <td width=100px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                    <th colspan="2" width=200px>类型</th>
+                                    <td width=115px><input size="18" type="text" name="getFakeData()" th:value="*{getFakeData()}"
+                                                           placeholder="类型"></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" width=200px>其他</th>
+                                    <td colspan="11" width=615px><input size="18" type="text" name="road_qt"
+                                                                        th:value="*{road_qt}"
+                                                                        placeholder="其他"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <button class="b" type="submit">确定修改</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </section>
+
+        </div>
     </div>
-    <div>
-        <input type="submit" value=" 确定 "/>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+        <div class="inner">
+
+            <!-- Search Box -->
+            <section id="search" class="alt">
+                <form method="get" action="#">
+                    <input type="text" name="search" id="search" placeholder="Search..."/>
+                </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <ul>
+                    <li><a th:href="@{/security/mainController}">主页</a></li>
+                    <!--用户-->
+                    <li>
+                        <span class="opener">用户</span>
+                        <ul>
+                            <li><a th:href="@{/user/toInput}">新增用户 #1</a></li>
+                            <li><a th:href="@{/user/list}">用户管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--道路-->
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--课程类型-->
+                    <li>
+                        <span class="opener">课程类型</span>
+                        <ul>
+                            <li><a th:href="@{/courseType/toInput}">新增课程类型</a></li>
+                            <li><a th:href="@{/courseType/list}">课程类型管理</a></li>
+                        </ul>
+                    </li>
+                    <!--实验室排课-->
+                    <li>
+                        <span class="opener">实验室排课</span>
+                        <ul>
+                            <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
+                            <li><a th:href="@{/course/list}">实验室排课管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">External Link</a></li>
+                </ul>
+            </nav>
+
+            <!-- Featured Posts -->
+            <div class="featured-posts">
+                <div class="heading">
+                    <h2>Featured Posts</h2>
+                </div>
+                <div class="owl-carousel owl-theme">
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured one">
+                            <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured two">
+                            <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured three">
+                            <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">Copyright &copy; 2019 Company Name
+                    <br>Designed by CQJTU <a href="http://www.cqjtu.edu.cn/" target="_blank"
+                                             title="重庆交通大学">重庆交通大学</a></p>
+            </footer>
+
+        </div>
     </div>
-</form>
 
-<table th:object="${road}">
-    <tr>
-        <td>
-            <table class="left" border="1" cellspacing="0">
-                <tr>
-                    <th width=120px>道路名称</th>
-                    <th width=120px>道路编号</th>
-                    <th width=120px>道路走向</th>
-                    <th width=120px>起点</th>
-                    <th width=120px>终点</th>
-                </tr>
-                <tr>
-                    <td width="120px"><input size="18" type="text" name="road_name" th:value="*{road_name}"
-                                             placeholder="道路名称"></td>
-                    <td width=120px><input size="18" type="text" name="road_id" th:value="*{road_id}"
-                                           placeholder="道路编号"></td>
-                    <td width=120px><input size="18" type="text" name="road_zx" th:value="*{road_zx}"
-                                           placeholder="道路走向"></td>
-                    <td width=120px><input size="18" type="text" name="road_qd" th:value="*{road_qd}"
-                                           placeholder="起点"></td>
-                    <td width=120px><input size="18" type="text" name="road_zd" th:value="*{road_zd}"
-                                           placeholder="终点"></td>
-                </tr>
-            </table>
-        <td>
-        <td>
-            <table class="left" border="1" cellspacing="0">
-                <tr>
-                    <th width=120px>设计单位</th>
-                    <th width=120px>施工单位</th>
-                    <th width=120px>道路等级</th>
-                    <th width=120px>路面等级</th>
-                    <th width=120px>设计时速</th>
-                </tr>
-                <tr>
-                    <td width=120px><input size="18" type="text" name="road_sjdw" th:value="*{road_sjdw}"
-                                           placeholder="设计单位"></td>
-                    <td width=120px><input size="18" type="text" name="road_sgdw" th:value="*{road_sgdw}"
-                                           placeholder="施工单位"></td>
-                    <td width=120px><input size="18" type="text" name="road_dldj" th:value="*{road_dldj}"
-                                           placeholder="道路等级"></td>
-                    <td width=120px><input size="18" type="text" name="road_lmdj" th:value="*{road_lmdj}"
-                                           placeholder="路面等级"></td>
-                    <td width=120px><input size="18" type="text" name="road_sjss" th:value="*{road_sjss}"
-                                           placeholder="设计时速"></td>
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table class="left" border="1" cellspacing="0">
-                <tr>
-                    <th width=120px>路幅宽度范围</th>
-                    <th width=120px>道路长度</th>
-                    <th width=120px>道路面积</th>
-                    <th width=120px>AADT</th>
-                    <th width=120px>交通量等级</th>
-                </tr>
-                <tr>
-                    <td width=120px><input size="18" type="text" name="road_lfkdfw" th:value="*{road_lfkdfw}"
-                                           placeholder="路幅宽度范围"></td>
-                    <td width=120px><input size="18" type="text" name="road_dlcd" th:value="*{road_dlcd}"
-                                           placeholder="道路长度"></td>
-                    <td width=120px><input size="18" type="text" name="road_dlmj" th:value="*{road_dlmj}"
-                                           placeholder="道路面积"></td>
-                    <td width=120px><input size="18" type="text" name="road_AADT" th:value="*{road_AADT}"
-                                           placeholder="AADT"></td>
-                    <td width=120px><input size="18" type="text" name="road_jtldj" th:value="*{road_jtldj}"
-                                           placeholder="交通量等级"></td>
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table class="left" border="1" cellspacing="0">
-                <tr>
-                    <th width=120px>所属乡镇</th>
-                    <th width=120px>管理分类</th>
-                    <th width=120px>管理单位</th>
-                    <th width=120px>养护单位</th>
-                    <th width=120px>建造年月</th>
-                </tr>
-                <tr>
-                    <td width=120px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                                           placeholder="所属乡镇"></td>
-                    <td width=120px><input size="18" type="text" name="road_glfl" th:value="*{road_glfl}"
-                                           placeholder="管理分类"></td>
-                    <td width=120px><input size="18" type="text" name="road_gldw" th:value="*{road_gldw}"
-                                           placeholder="管理单位"></td>
-                    <td width=120px><input size="18" type="text" name="road_yhdw" th:value="*{road_yhdw}"
-                                           placeholder="养护单位"></td>
-                    <td width=120px><input size="18" type="text" name="road_jzny" th:value="*{road_jzny}"
-                                           placeholder="建造年月"></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+</div>
 
-<table th:object="${road}" border="1" cellspacing="0">
-    <tr>
-        <th rowspan="7" width=30px>车行道</th>
-        <th rowspan="2" width=100px>路面</th>
-        <th width=100px>类型</th>
-        <td width=100px><input size="18" type="text" name="lmlx_lmlx" th:value="*{lmlx_lmlx}"
-                               placeholder="类型"></td>
-        <th rowspan="7" width=30px>人行道</th>
-        <th rowspan="7" width=30px>左侧</th>
-        <th width=100px>铺面类型</th>
-        <td width=100px><input size="18" type="text" th:value="*{getFakeData()}"
-                               placeholder="铺面类型"></td>
-        <th rowspan="7" width=30px>分隔带</th>
-        <th rowspan="7" width=30px>左侧</th>
-        <th rowspan="3" width=100px>人行护栏</th>
-        <th width=100px>长度</th>
-        <td width=115px><input size="18" type="text" th:value="*{getFakeData()}"
-                               placeholder="长度"></td>
-    </tr>
-    <tr>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-        <th width=100px>厚度</th>
-        <td width=100px><input size="18" type="text" name="road_lmhd" th:value="*{road_lmhd}"
-                               placeholder="厚度"></td>
-        <th width=100px>长度</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="长度"></td>
-        <th width=100px>高度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="高度"></td>
-    </tr>
-    <tr>
-        <th rowspan="2" width=100px>基层</th>
-        <th width=100px>类型</th>
-        <td width=100px><input size="18" type="text" name="road_jclx" th:value="*{road_jclx}"
-                               placeholder="类型"></td>
-        <th width=100px>宽度范围</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="宽度范围"></td>
-        <th width=100px>类型</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th width=100px>厚度</th>
-        <td width=100px><input size="18" type="text" name="road_jchd" th:value="*{road_jchd}"
-                               placeholder="厚度"></td>
-        <th width=100px>直线面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="直线面积"></td>
-        <th colspan="2" width=100px>长度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="长度"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=100px>车道数</th>
-        <td width=100px><input size="18" type="text" name="road_cds" th:value="*{road_cds}"
-                               placeholder="车道数"></td>
-        <th width=100px>交叉口面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="交叉口面积"></td>
-        <th colspan="2" width=100px>宽度范围</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="宽度范围"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=100px>通行方向</th>
-        <td width=100px><input size="18" type="text" name="road_txfx" th:value="*{road_txfx}"
-                               placeholder="通行方向"></td>
-        <th width=100px>盲道长度</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="盲道长度"></td>
-        <th colspan="2" width=100px>面积</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="面积"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=100px>机动车道宽度范围</th>
-        <td width=100px><input size="18" type="text" name="road_jdcdkdfw" th:value="*{road_jdcdkdfw}"
-                               placeholder="机动车道宽度范围"></td>
-        <th width=100px>无障碍通道面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="无障碍通道面积"></td>
-        <th colspan="2" width=100px>类型</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-</table>
-
-<table th:object="${road}" border="1" cellspacing="0">
-    <tr>
-        <th rowspan="8" width=30px>车行道</th>
-        <th colspan="2" width=200px>左侧非机动车道宽度范围</th>
-        <td width=100px><input size="18" type="text" name="road_zcfjdcdkdfw" th:value="*{road_zcfjdcdkdfw}"
-                               placeholder="左侧非机动车道宽度范围"></td>
-        <th rowspan="13" width=30px>人行道</th>
-        <th rowspan="3" width=30px>左侧</th>
-        <th width=100px>绿化带面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th rowspan="13" width=30px>分隔带</th>
-        <th rowspan="6" width=30px>中央</th>
-        <th rowspan="2" width=100px>护栏</th>
-        <th width=100px>高度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>右侧非机动车道宽度范围</th>
-        <td width=100px><input size="18" type="text" name="road_ycfjdcdkdfw" th:value="*{road_ycfjdcdkdfw}"
-                               placeholder="右侧非机动车道宽度范围"></td>
-        <th width=100px>侧石类型</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th width=100px>高度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>车行道面积</th>
-        <td width=100px><input size="18" type="text" name="road_cxdmj" th:value="*{road_cxdmj}"
-                               placeholder="车行道面积"></td>
-        <th width=100px>平石类型</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>长度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>有无公交车专用道</th>
-        <td width=100px><input size="18" type="text" name="road_ywgjczyd" th:value="*{road_ywgjczyd}"
-                               placeholder="有无公交车专用道"></td>
-        <th rowspan="10" width=30px>右侧</th>
-        <th width=100px>铺面类型</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>宽度范围</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th rowspan="2" width=100px>侧石</th>
-        <th width=100px>类型</th>
-        <td width=100px><input size="18" type="text" name="road_cslx" th:value="*{road_cslx}"
-                               placeholder="侧石类型"></td>
-        <th width=100px>长度</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>面积</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th width=100px>长度</th>
-        <td width=100px><input size="18" type="text" name="road_cscd" th:value="*{road_cscd}"
-                               placeholder="侧石长度"></td>
-        <th width=100px>宽度范围</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>类型</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th rowspan="2" width=100px>平石</th>
-        <th width=100px>类型</th>
-        <td width=100px><input size="18" type="text" name="road_pslx" th:value="*{road_pslx}"
-                               placeholder="平石类型"></td>
-        <th width=100px>直线面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th rowspan="7" width=30px>人行道</th>
-        <th rowspan="3" width=100px>人行护栏</th>
-        <th width=100px>长度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th width=100px>长度</th>
-        <td width=100px><input size="18" type="text" name="road_pscd" th:value="*{road_pscd}"
-                               placeholder="平石长度"></td>
-        <th width=100px>交叉口面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th width=100px>高度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th rowspan="6" width=30px>附属设施</th>
-        <th colspan="2" width=200px>检查井数量</th>
-        <td width=100px><input size="18" type="text" name="road_jcjsl" th:value="*{road_jcjsl}"
-                               placeholder="检查井数量"></td>
-        <th width=100px>盲道长度</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th width=100px>类型</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>雨水口井数量</th>
-        <td width=100px><input size="18" type="text" name="road_ysksl" th:value="*{road_ysksl}"
-                               placeholder="雨水口井数量"></td>
-        <th width=100px>无障碍通道面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>长度</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>路名牌数量</th>
-        <td width=100px><input size="18" type="text" name="road_lmpsl" th:value="*{road_lmpsl}"
-                               placeholder="路名牌数量"></td>
-        <th width=100px>绿化带面积</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>宽度范围</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>标志牌数量</th>
-        <td width=100px><input size="18" type="text" name="road_bzpsl" th:value="*{road_bzpsl}"
-                               placeholder="标志牌数量"></td>
-        <th width=100px>侧石类型</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>面积</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>树池面积</th>
-        <td width=100px><input size="18" type="text" name="road_scmj" th:value="*{road_scmj}"
-                               placeholder="树池面积"></td>
-        <th width=100px>平石类型</th>
-        <td width=100px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-        <th colspan="2" width=200px>类型</th>
-        <td width=115px><input size="18" type="text" name="road_ssxz" th:value="*{road_ssxz}"
-                               placeholder="类型"></td>
-    </tr>
-    <tr>
-        <th colspan="2" width=200px>其他</th>
-        <td colspan="11" width=615px><input size="18" type="text" name="road_qt" th:value="*{road_qt}"
-                                            placeholder="其他"></td>
-    </tr>
-</table>
-
-<script th:inline="javascript">
-
-    $(function () {
-
-        $(".back").click(function () {
-            var href = $(this).attr("href");
-            $(location).attr("href", href);
-        });
-    });
-
-</script>
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/transition.js}"></script>
+<script th:src="@{/assets/js/owl-carousel.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
 </body>
+
+
 </html>

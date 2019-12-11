@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!--    <meta charset="UTF-8">-->
-    <!--    <title>登录页面</title>-->
-    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />-->
-    <!--    <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>-->
     <title>欢迎访问</title>
     <link th:href="@{/css/style1.css}" rel="stylesheet" type="text/css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -21,7 +17,7 @@
             __links[i].addEventListener('click', __linkClick, false);
         }
     }</script>
-    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery-3.1.1.min.js}"></script>
     <script>$(document).ready(function (c) {
         $('.alert-close').on('click', function (c) {
             $('.message').fadeOut('slow', function (c) {
@@ -41,26 +37,6 @@
 
 </head>
 <body>
-<!--<div>
-    <div id="wrapper" style="text-align:center">
-        <div id="f_title">用户登录</div>
-        <br>
-        <form th:action="@{/security/login}" method="post" th:object="${user}">
-            <div class="f_row">
-                <span>用户编号:</span>
-                <input type="text" class="form-control" name="userNo" placeholder="请输入账号">
-            </div>
-            <div class="f_row">
-                <span>登录密码:</span>
-                <input type="text" class="form-control" name="userPwd" placeholder="请输入密码">
-            </div>
-            <br>
-            <div class="f_row">
-                <input type="submit" value=" 登 录 "/>
-            </div>
-        </form>
-    </div>
-</div>-->
 
 <!-- contact-form -->
 <div class="message warning">
@@ -87,7 +63,7 @@
         </form>
     </div>
 </div>
-<div id="footer" class="footer">
+<div align="center" style="margin-top:100px">
     轻量级城镇道路养护信息管理系统-测试版（版本:Beta1.0 Build:#1 2019-12-9）
 </div>
 </body>

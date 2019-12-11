@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <title>记账小程序</title>
+    <title>RMMS</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -17,16 +18,6 @@
     <link rel="stylesheet" th:href="@{/assets/css/fontawesome.css}">
     <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
     <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
-    <!-- Scripts -->
-    <!-- Bootstrap core JavaScript -->
-    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-
-    <script th:src="@{/assets/js/browser.min.js}"></script>
-    <script th:src="@{/assets/js/breakpoints.min.js}"></script>
-    <script th:src="@{/assets/js/transition.js}"></script>
-    <script th:src="@{/assets/js/owl-carousel.js}"></script>
-    <script th:src="@{/assets/js/custom.js}"></script>
 
 </head>
 
@@ -42,7 +33,7 @@
             <!-- Header -->
             <header id="header">
                 <div class="logo">
-                    <a href="index.html">记账小程序</a>
+                    <a th:href="@{/security/mainController}">轻量级城镇道路养护信息管理系统</a>
                 </div>
             </header>
 
@@ -55,13 +46,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <h4>你好, 欢迎使用<em>记账小程序。</em></h4>
+                                            <h4>Hello, this is your <em>Ramayana</em> Theme.</h4>
                                             <span>AWESOME HTML5 &amp; CSS3 TEMPLATE</span>
-                                            <p>是不是长期处于<strong>月光状态</strong>呢？
-                                                是不是每个月到手的钱不少却总是感觉<strong>缺钱</strong>呢？
-                                                是不是总不知钱花到哪里去了呢？尝试开始<strong>记账</strong>吧！</p>
+                                            <p>Do you know that <strong>Ramayana</strong> is a free to use Bootstrap 4
+                                                CSS template by <strong>templatemo</strong>? You can edit and add more
+                                                pages as you wanted for your personal or corporate websites.</p>
                                             <div class="primary-button">
-                                                <a href="add.html">尝试记账</a>
+                                                <a href="#">Read More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -72,6 +63,107 @@
                 </div>
             </section>
 
+            <!-- Services -->
+            <section class="services">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="service-item first-item">
+                                <div class="icon"></div>
+                                <h4>Web Design</h4>
+                                <p>Credit goes to <a rel="nofollow" href="#">Pexels</a> and <a rel="nofollow"
+                                                                                               href="https://www.rawpixel.com">Raw
+                                    Pixel</a> for images used in this template. Thank you.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-item second-item">
+                                <div class="icon"></div>
+                                <h4>Bootstrap 4</h4>
+                                <p>Proin aliquam facilisis ante interdum. Sed nulla feugiat tempus aliquam.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-item third-item">
+                                <div class="icon"></div>
+                                <h4>HTML CSS</h4>
+                                <p>Proin aliquam facilisis ante interdum. Sed nulla feugiat tempus aliquam.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-item fourth-item">
+                                <div class="icon"></div>
+                                <h4>Download Free</h4>
+                                <p>We have many free to use CSS web templates on our site for you.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-item fivth-item">
+                                <div class="icon"></div>
+                                <h4>Get in touch</h4>
+                                <p>You can get the fastest response from <a rel="nofollow" href="#">templatemo</a>
+                                    facebook page.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="service-item sixth-item">
+                                <div class="icon"></div>
+                                <h4>Spread a word</h4>
+                                <p>Please tell your friends about our website. This is very helpful.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/">建站模板</a></div>
+
+            <!-- Top Image -->
+            <section class="top-image">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="assets/images/top-image.jpg" alt="">
+                            <div class="down-content">
+                                <h4>Ante Interdum Chambray</h4>
+                                <p>Lorem ipsum dolor amet raclette chambray bitters, hammock celiac slow-carb
+                                    flexitarian four dollar toast food truck health goth. Air plant brunch food truck
+                                    vegan scenester organic crucifix irony pour-over pop-up austin hexagon kitsch swag.
+                                    Godard literally humblebrag cloud bread vice master cleanse chambray typewriter put
+                                    a bird on it brooklyn forage.</p>
+                                <div class="primary-button">
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Left Image -->
+            <section class="left-image">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/images/left-image.jpg" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="right-content">
+                                <h4>Ante Interdum Raclette</h4>
+                                <p>Lorem ipsum dolor amet raclette chambray bitters, hammock celiac slow-carb
+                                    flexitarian four dollar toast food truck health goth. Air plant brunch food truck
+                                    vegan scenester organic crucifix irony pour-over pop-up austin hexagon kitsch swag.
+                                    Godard literally humblebrag cloud bread vice master cleanse chambray typewriter put
+                                    a bird on it brooklyn forage.<br><br>Air plant brunch food truck vegan scenester
+                                    organic crucifix irony pour-over pop-up austin hexagon kitsch swag. Godard literally
+                                    humblebrag cloud bread vice master cleanse chambray typewriter put bird brooklyn</p>
+                                <div class="primary-button">
+                                    <a href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Right Image -->
             <section class="right-image">
@@ -79,20 +171,21 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="left-content">
-                                <h4>为什么要记账？</h4>
-                                <p>约束乱消费行为：如果你平时花钱大手大脚，有记账行为的时候，心理更容易产生负罪感，潜意识里会自觉适当约束自己大额的开支。
-                                    <br><br>
-                                    管理消费体系：记账三五个月后，就可以从数据中整理分析出自己的消费体系了，哪些方面开销巨大可以缩减也一目了然。
-                                    <br><br>
-                                    培养个人意志：记账本身是一个繁琐而枯燥的过程，如果能够坚持下来，本身也是一个磨炼意志，提高自身耐心和细致度的挑战。
-                                </p>
+                                <h4>Ante Interdum Raclette</h4>
+                                <p>Lorem ipsum dolor amet raclette chambray bitters, hammock celiac slow-carb
+                                    flexitarian four dollar toast food truck health goth. Air plant brunch food truck
+                                    vegan scenester organic crucifix irony pour-over pop-up austin hexagon kitsch swag.
+                                    Godard literally humblebrag cloud bread vice master cleanse chambray typewriter put
+                                    a bird on it brooklyn forage.<br><br>Air plant brunch food truck vegan scenester
+                                    organic crucifix irony pour-over pop-up austin hexagon kitsch swag. Godard literally
+                                    humblebrag cloud bread vice master cleanse chambray typewriter put bird brooklyn</p>
                                 <div class="primary-button">
-                                    <a href="add.html">尝试记账</a>
+                                    <a href="#">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <img th:src="@{/assets/images/right-image.jpg}" alt="">
+                            <img src="assets/images/right-image.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -108,7 +201,7 @@
 
             <!-- Search Box -->
             <section id="search" class="alt">
-                <form method="get" action="AccountServlet?method=search">
+                <form method="get" action="#">
                     <input type="text" name="search" id="search" placeholder="Search..."/>
                 </form>
             </section>
@@ -116,19 +209,82 @@
             <!-- Menu -->
             <nav id="menu">
                 <ul>
-                    <li><a href="main.html">Homepage</a></li>
-                    <li><a href="add.html">新增消费账单</a></li>
-                    <li><a href="AccountServlet?method=delete">删除消费账单</a></li>
-                    <li><a href="AccountServlet?method=list">修改消费账单</a></li>
-                    <li><a href="search.html">查询消费账单</a></li>
-                    <li><a href="AccountServlet?method=show">查看所有账单</a></li>
+                    <li><a th:href="@{/security/mainController}">主页</a></li>
+                    <!--用户-->
+                    <li>
+                        <span class="opener">用户</span>
+                        <ul>
+                            <li><a th:href="@{/user/toInput}">新增用户 #1</a></li>
+                            <li><a th:href="@{/user/list}">用户管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--道路-->
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--课程类型-->
+                    <li>
+                        <span class="opener">课程类型</span>
+                        <ul>
+                            <li><a th:href="@{/courseType/toInput}">新增课程类型</a></li>
+                            <li><a th:href="@{/courseType/list}">课程类型管理</a></li>
+                        </ul>
+                    </li>
+                    <!--实验室排课-->
+                    <li>
+                        <span class="opener">实验室排课</span>
+                        <ul>
+                            <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
+                            <li><a th:href="@{/course/list}">实验室排课管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}" target="contentFrame">道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">External Link</a></li>
                 </ul>
             </nav>
 
+            <!-- Featured Posts -->
+            <div class="featured-posts">
+                <div class="heading">
+                    <h2>Featured Posts</h2>
+                </div>
+                <div class="owl-carousel owl-theme">
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured one">
+                            <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured two">
+                            <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured three">
+                            <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer id="footer">
-                <p class="copyright">Copyright &copy; 2019
+                <p class="copyright">Copyright &copy; 2019 Company Name
+                    <br>Designed by CQJTU <a href="http://www.cqjtu.edu.cn/" target="_blank"
+                                             title="重庆交通大学">重庆交通大学</a></p>
             </footer>
 
         </div>
@@ -136,10 +292,17 @@
 
 </div>
 
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/transition.js}"></script>
+<script th:src="@{/assets/js/owl-carousel.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
 </body>
 
-
-</body>
 
 </html>
