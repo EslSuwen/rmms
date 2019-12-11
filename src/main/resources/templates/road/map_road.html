@@ -9,6 +9,26 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
+    <!--  map api  -->
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/AMap.PlaceSearchRender1120.css"/>
+    <style>
+        #panel {
+            z-index: 999;
+            position: absolute;
+            background-color: white;
+            max-height: 100%;
+            overflow-y: auto;
+            right: 0;
+            width: 280px;
+        }
+    </style>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.15&key=b2ee041341d9db4e5e285e5b52af5547&plugin=AMap.PlaceSearch"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/PlaceSearchRender.js"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+
     <title>RMMS</title>
 
     <!-- Bootstrap core CSS -->
@@ -40,120 +60,42 @@
             <!-- Banner -->
             <section class="main-banner">
                 <div class="container-fluid">
+                    <input id="find_name" th:object="${road}" th:value="*{road_name}"/>
                     <div align="center">
-                        <h3 class="title">道路管理</h3>
-
-                        <form action="" method="get">
-                            <input type="hidden" name="_method" value="DELETE"/>
-                        </form>
-
-                        <table border="0" cellspacing="0">
-                            <tr>
-                                <th>编号</th>
-                                <th>名称</th>
-                                <th>操作</th>
-                            </tr>
-                            <tr class="road" th:each="road : ${page.list}">
-                                <td th:text="${road.road_id}" nowrap></td>
-                                <td id="road_name" th:text="${road.road_name}" nowrap></td>
-                                <td nowrap>
-                                    <button class="delete" th:href="@{/road/remove/{road_id}(road_id=${road.road_id})}">删除</button>
-                                    <button class="info" th:href="@{/road/info/{road_id}(road_id=${road.road_id})}">详细信息</button>
-                                    <button class="info" th:href="@{/road/map/{road_id}(road_id=${road.road_id})}">地图显示</button>
-                                </td>
-                            </tr>
-
-                        </table>
-
-                        <div id="pageInfo">
-                            共[[${page.total}]]条,
-                            <span th:if="${ ( page.pageNum - 1 ) * page.pageSize + 1 == page.total }">
-			当前显示第[[${page.total}]]条,
-	</span>
-                            <span th:if="${ ( page.pageNum - 1 ) * page.pageSize + 1 != page.total }">
-			当前显示[[${page.startRow}]]-[[${page.endRow}]]条,
-	</span>
-                            第[[${page.pageNum}]]/[[${page.pages}]]页
-                            |
-                            <a href="#" th:if="${page.pageNum > 1}"><span class="linkspan" id="one">首页</span>&nbsp;</a>
-                            <a href="#" th:if="${page.pageNum > 1}"><span class="linkspan" id="two">上一页</span>&nbsp;</a>
-                            <a href="#" th:if="${page.pageNum < page.pages}"><span class="linkspan" id="three">下一页</span>&nbsp;</a>
-                            <a href="#" th:if="${page.pageNum != page.pages}"><span class="linkspan" id="four">末页</span>&nbsp;</a>
-                            |
-                            到<input type="text" id="pageNo" size=4 style="text-align:right;" onkeypress="onlynumber();"/> 页
-                            <button class="linkspan" id="five" style="color:black;text-decoration:none;"> 跳 转</button>
-                        </div>
-                        <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
-                        <script th:inline="javascript">
-
-                            $(function () {
-                                //删除操作
-                                $(".delete").click(function () {
-                                    var href = $(this).attr("href");
-                                    if (confirm("确定要删除吗?")) {
-                                        $("form:eq(0)").attr("action", href).submit();
-                                        return false;
-                                    }
-
-                                });
-
-                                $(".update").click(function () {
-                                    var href = $(this).attr("href");
-                                    $(location).attr("href", href);
-
-                                });
-
-                                $(".info").click(function () {
-                                    var href = $(this).attr("href");
-                                    $(location).attr("href", href);
-
-                                });
-
-                                //分页操作
-                                $(".linkspan").click(function () {
-
-                                    var pageNo = [[${page.pageNum}]];
-                                    var totalPageNum = [[${page.pages}]];
-                                    var re = /^[0-9]+.?[0-9]*$/;
-
-                                    if (String($(this).attr("id")) == String("one"))
-                                        pageNo = 1;
-
-                                    if (String($(this).attr("id")) == String("two"))
-                                        pageNo = pageNo - 1;
-
-                                    if (String($(this).attr("id")) == String("three"))
-                                        pageNo = pageNo + 1;
-
-                                    if (String($(this).attr("id")) == String("four"))
-                                        pageNo = totalPageNum;
-
-                                    if (String($(this).attr("id")) == String("five")) {
-                                        var num = $.trim($("#pageNo").val());
-
-                                        if (!re.test(num)) {
-                                            alert("输入的不是数字!");
-                                            return;
-                                        }
-                                        pageNo = parseInt(num);
-                                        if (pageNo < 1 || pageNo > totalPageNum) {
-                                            alert("页号超出范围，有效范围：[1-" + totalPageNum + "]!");
-                                            return;
-                                        }
-
-                                    }
-
-                                    var href = "?pageNo=" + pageNo;
-                                    $(location).attr("href", href);
-                                    return false;
-
-                                });
+                        <div id="container"></div>
+                        <div id="panel"></div>
+                        <script type="text/javascript">
+                            var map = new AMap.Map("container", {
+                                resizeEnable: true
                             });
+                            var placeSearch = new AMap.PlaceSearch({
+                                // city 指定搜索所在城市，支持传入格式有：城市名、citycode和adcode
+                                city: '021'
+                            })
+
+                            placeSearch.search(document.getElementById('find_name').value, function (status, result) {
+                                // 查询成功时，result即对应匹配的POI信息
+                                console.log(result)
+                                var pois = result.poiList.pois;
+                                for(var i = 0; i < pois.length; i++){
+                                    var poi = pois[i];
+                                    var marker = [];
+                                    marker[i] = new AMap.Marker({
+                                        position: poi.location,   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+                                        title: poi.name
+                                    });
+                                    // 将创建的点标记添加到已有的地图实例：
+                                    map.add(marker[i]);
+                                }
+                                map.setFitView();
+
+                            })
 
                         </script>
                     </div>
                 </div>
             </section>
+
 
         </div>
     </div>
@@ -187,7 +129,7 @@
                         <span class="opener">道路</span>
                         <ul>
                             <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}" >道路管理 #2</a></li>
+                            <li><a th:href="@{/road/list}" getFakeData()>道路管理 #2</a></li>
                         </ul>
                     </li>
                     <!--课程类型-->
@@ -210,7 +152,7 @@
                         <span class="opener">道路</span>
                         <ul>
                             <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}" >道路管理 #2</a></li>
+                            <li><a th:href="@{/road/list}" getFakeData()>道路管理 #2</a></li>
                         </ul>
                     </li>
                     <li><a href="#">External Link</a></li>

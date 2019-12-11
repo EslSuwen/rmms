@@ -87,6 +87,14 @@ public class RoadController {
         return "road/info_road";
     }
 
+    @GetMapping(value = "/map/{road_id}")
+    public String map(@PathVariable("road_id") Integer road_id, Map<String, Object> map) {
+        System.out.println(roadService.getRoadById(road_id));
+        map.put("road", roadService.getRoadById(road_id));
+
+        return "road/map_road";
+    }
+
     @RequestMapping(value = "/update")
     public String update(Road road) {
 
