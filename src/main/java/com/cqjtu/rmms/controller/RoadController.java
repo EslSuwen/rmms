@@ -55,7 +55,7 @@ public class RoadController {
          * 第二个参数：每页获取的条数.
          */
         PageHelper.startPage(pageNo, 4);
-        List<Road> roadList=roadService.loadAll();
+        List<Road> roadList = roadService.loadAll();
 
         PageInfo<Road> page = new PageInfo<>(roadList);
 
@@ -81,7 +81,7 @@ public class RoadController {
 
     @GetMapping(value = "/info/{road_id}")
     public String info(@PathVariable("road_id") Integer road_id, Map<String, Object> map) {
-        System.out.println(roadService.getRoadById(road_id));
+        System.out.println("info" + roadService.getRoadById(road_id));
         map.put("road", roadService.getRoadById(road_id));
 
         return "road/info_road";

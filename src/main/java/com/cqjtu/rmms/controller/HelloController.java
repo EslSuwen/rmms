@@ -10,6 +10,6 @@ public class HelloController {
     @GetMapping("/hello")
     @ResponseBody
     public String Hello(){
-        return "hello 3s";
+        return "hello 1212 双十二快乐 没行啊";
     }
 }
