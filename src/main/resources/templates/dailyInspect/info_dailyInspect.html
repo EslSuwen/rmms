@@ -91,37 +91,53 @@
                             <div>
                                 <table border="1" cellspacing="0">
                                     <tr>
+                                        <th width=100px>日常巡查信息编号</th>
+                                        <td colspan="3" width=100px><input size="18" type="text" name="daily_inspect_no"
+                                                                           th:value="*{daily_inspect_no}"
+                                                                           readonly="readonly"></td>
+                                    </tr>
+                                    <tr>
                                         <th width=100px>日期</th>
-                                        <td width=100px><input size="18" type="text" name="daily_inspect_date"
+                                        <td width=100px><input size="18" type="date" name="daily_inspect_date"
                                                                th:value="*{daily_inspect_date}" placeholder="日期"></td>
                                         <th width=100px>巡查人员</th>
-                                        <td width=100px><input size="18" type="text" name="inspector_name"
-                                                               th:value="*{inspector_name}" placeholder="巡查人员"></td>
+                                        <td width=100px><select name="inspector_name">
+                                            <option th:text="*{inspector_name}"></option>
+                                            <option th:each="list:${userNameList}" th:value="${list.userName}"
+                                                    th:text="${list.userName}"></option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <th width=100px>道路名称</th>
-                                        <td width=100px><input size="18" type="text" name="road_name" th:value="*{road_name}"
-                                                               placeholder="道路名称"></td>
+                                        <td width=100px><select name="road_name">
+                                            <option th:text="*{road_name}"></option>
+                                            <option th:each="list:${roadNameList}" th:value="${list.road_name}"
+                                                    th:text="${list.road_name}"></option>
+                                        </select></td>
                                         <th width=100px>损坏类型</th>
-                                        <td width=100px><input size="18" type="text" name="damage_type"
-                                                               th:value="*{damage_type}" placeholder="损坏类型"></td>
+                                        <td width=100px><select name="damage_type">
+                                            <option th:text="*{damage_type}"></option>
+                                            <option th:each="list:${damageTypeList}" th:value="${list.damage_name}"
+                                                    th:text="${list.damage_name}"></option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <th colspan="2" width=200px>损坏位置及损坏情况描述</th>
-                                        <td colspan="2" width=200px><input size="57" type="text" name="daily_inspect_desc"
+                                        <td colspan="2" width=200px><input size="57" type="text"
+                                                                           name="daily_inspect_desc"
                                                                            th:value="*{daily_inspect_desc}"
                                                                            placeholder="损坏位置及损坏情况描述"></td>
                                     </tr>
                                     <tr>
                                         <th width=100px>备注</th>
-                                        <td colspan="3" width=300px><input size="88" type="text" name="daily_inspector_ps"
+                                        <td colspan="3" width=300px><input size="88" type="text"
+                                                                           name="daily_inspector_ps"
                                                                            th:value="*{daily_inspector_ps}"
                                                                            placeholder="备注"></td>
                                     </tr>
                                 </table>
                             </div>
                             <div>
-                                <input type="submit" value=" 确定 "/>
                                 <button class="b" type="submit">确定修改</button>
                             </div>
                         </form>
@@ -164,12 +180,12 @@
                             <li><a th:href="@{/road/list}">道路管理 #2</a></li>
                         </ul>
                     </li>
-                    <!--课程类型-->
+                    <!--日常巡查-->
                     <li>
-                        <span class="opener">课程类型</span>
+                        <span class="opener">日常巡查</span>
                         <ul>
-                            <li><a th:href="@{/courseType/toInput}">新增课程类型</a></li>
-                            <li><a th:href="@{/courseType/list}">课程类型管理</a></li>
+                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查</a></li>
+                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理</a></li>
                         </ul>
                     </li>
                     <!--实验室排课-->
@@ -178,13 +194,6 @@
                         <ul>
                             <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
                             <li><a th:href="@{/course/list}">实验室排课管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="opener">道路</span>
-                        <ul>
-                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
                         </ul>
                     </li>
                     <li><a href="#">External Link</a></li>

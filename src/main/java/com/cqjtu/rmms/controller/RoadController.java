@@ -95,7 +95,7 @@ public class RoadController {
         return "road/map_road";
     }
 
-    @RequestMapping(value = "/update")
+    @PostMapping(value = "/update")
     public String update(Road road) {
 
         roadService.updateRoad(road);

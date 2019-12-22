@@ -97,7 +97,7 @@
                                     </tr>
                                     <tr>
                                         <th width=100px>日期</th>
-                                        <td width=100px><input size="18" type="text" name="daily_inspect_date"
+                                        <td width=100px><input size="18" type="date" name="daily_inspect_date"
                                                                th:value="*{daily_inspect_date}" placeholder="日期"></td>
                                         <th width=100px>巡查人员</th>
                                         <td width=100px><select name="inspector_name">
@@ -107,9 +107,6 @@
                                     </tr>
                                     <tr>
                                         <th width=100px>道路名称</th>
-<!--                                        <td width=100px><input size="18" type="text" name="road_name"-->
-<!--                                                               th:value="*{road_name}"-->
-<!--                                                               placeholder="道路名称"></td>-->
                                         <td width=100px><select name="road_name">
                                             <option>=请选择=</option>
                                             <option th:each="list:${roadNameList}" th:value="${list.road_name}" th:text="${list.road_name}"></option>
@@ -182,12 +179,12 @@
                             <li><a th:href="@{/road/list}">道路管理 #2</a></li>
                         </ul>
                     </li>
-                    <!--课程类型-->
+                    <!--日常巡查-->
                     <li>
-                        <span class="opener">课程类型</span>
+                        <span class="opener">日常巡查</span>
                         <ul>
-                            <li><a th:href="@{/courseType/toInput}">新增课程类型</a></li>
-                            <li><a th:href="@{/courseType/list}">课程类型管理</a></li>
+                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查</a></li>
+                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理</a></li>
                         </ul>
                     </li>
                     <!--实验室排课-->
@@ -196,13 +193,6 @@
                         <ul>
                             <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
                             <li><a th:href="@{/course/list}">实验室排课管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="opener">道路</span>
-                        <ul>
-                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
                         </ul>
                     </li>
                     <li><a href="#">External Link</a></li>

@@ -100,7 +100,7 @@ public class DailyInspectController {
         return "dailyInspect/update_dailyInspect";
     }
 
-    @RequestMapping(value = "/update")
+    @PostMapping(value = "/update")
     public String update(DailyInspect dailyInspect) {
 
         dailyInspectService.updateDailyInspect(dailyInspect);
@@ -110,6 +110,16 @@ public class DailyInspectController {
     @GetMapping(value = "/info/{dailyInspectNo}")
     public String info(@PathVariable("dailyInspectNo") Integer dailyInspectNo, Map<String, Object> map) {
         System.out.println("info" + dailyInspectService.getDailyInspectById(dailyInspectNo));
+
+        DamageTypeHelper damageTypeHelper = new DamageTypeHelper();
+
+        if (damageTypeHelper.get() != null)
+            map.put("damageTypeList", damageTypeHelper.get());
+
+        map.put("roadNameList", roadService.loadAll());
+
+        map.put("userNameList", userService.loadAll());
+
         map.put("dailyInspect", dailyInspectService.getDailyInspectById(dailyInspectNo));
 
         return "dailyInspect/info_dailyInspect";
