@@ -44,7 +44,7 @@ public interface UserService {
     void updateUser(User user);
 
     /**
-     * 获取一条课程类型记录
+     * 获取一条用户记录
      *
      * @param userId
      * @return User
@@ -53,7 +53,7 @@ public interface UserService {
     User getUserById(Integer userId);
 
     /**
-     *  获取所有课程类型记录
+     *  获取所有用户记录
      *
      * @return List
      *

@@ -19,6 +19,32 @@
     <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
     <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
 
+    <style type="text/css">
+        .a {
+            margin-top: 20px;
+        }
+
+        .b {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: transparent;
+            display: inline-block;
+            padding: 4px 20px;
+            color: #535ba0;
+            border: 2px solid #535ba0;
+            transition: all 0.5s;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .b :hover {
+            color: #fff;
+            background-color: rgba(83, 91, 160, 1);
+
+        }
+    </style>
+
 </head>
 
 <body class="is-preload">
@@ -41,32 +67,23 @@
             <section class="main-banner">
                 <div class="container-fluid">
                     <div align="center">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="banner-content">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="banner-caption">
-                                                <h4>Hello, this is your <em>Ramayana</em> Theme.</h4>
-                                                <span>AWESOME HTML5 &amp; CSS3 TEMPLATE</span>
-                                                <p>Do you know that <strong>Ramayana</strong> is a free to use Bootstrap
-                                                    4
-                                                    CSS template by <strong>templatemo</strong>? You can edit and add
-                                                    more
-                                                    pages as you wanted for your personal or corporate websites.</p>
-                                                <div class="primary-button">
-                                                    <a href="#">Read More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <h3 class="title">修改用户</h3>
+                        <form th:action="@{/user/update}" method="post" th:object="${user}">
+                            <div>
+                                <span>用户姓名:</span>
+                                <input class="a" type="text" name="userName" th:value="*{userName}" placeholder="用户姓名"><br>
+                                <span>用户账号:</span>
+                                <input class="a" type="text" name="userNo" th:value="*{userNo}" placeholder="用户账号"><br>
+                                <span>用户密码:</span>
+                                <input class="a" type="text" name="userPwd" th:value="*{userPwd}" placeholder="用户密码"><br>
                             </div>
-                        </div>
+                            <div>
+                                <button class="b" type="submit">确定</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>
-
 
         </div>
     </div>
@@ -100,15 +117,25 @@
                         <span class="opener">道路</span>
                         <ul>
                             <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}" getFakeData()>道路管理 #2</a></li>
+                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
                         </ul>
                     </li>
-                    <!--课程类型-->
+                    <!--日常巡查-->
                     <li>
-                        <span class="opener">课程类型</span>
+                        <span class="opener">日常巡查</span>
                         <ul>
-                            <li><a th:href="@{/courseType/toInput}">新增课程类型</a></li>
-                            <li><a th:href="@{/courseType/list}">课程类型管理</a></li>
+                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查</a></li>
+                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理</a></li>
+                        </ul>
+                    </li>
+                    <!--定期巡查-->
+                    <li>
+                        <span class="opener">定期巡查</span>
+                        <ul>
+                            <li><a th:href="@{/regularSmooth/toInput}">新增定期平整巡查</a></li>
+                            <li><a th:href="@{/regularSmooth/list}">定期平整巡查管理</a></li>
+                            <li><a th:href="@{/regularDamage/toInput}">新增定期损坏巡查</a></li>
+                            <li><a th:href="@{/regularDamage/list}">定期损坏巡查管理</a></li>
                         </ul>
                     </li>
                     <!--实验室排课-->
@@ -119,16 +146,10 @@
                             <li><a th:href="@{/course/list}">实验室排课管理</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <span class="opener">道路</span>
-                        <ul>
-                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}" getFakeData()>道路管理 #2</a></li>
-                        </ul>
-                    </li>
                     <li><a href="#">External Link</a></li>
                 </ul>
             </nav>
+
 
             <!-- Featured Posts -->
             <div class="featured-posts">

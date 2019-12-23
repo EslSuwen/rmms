@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>RMMS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
+
+</head>
+
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <div class="logo">
+                    <a th:href="@{/security/mainController}">轻量级城镇道路养护信息管理系统</a>
+                </div>
+            </header>
+
+            <!-- Banner -->
+            <section class="main-banner">
+                <div class="container-fluid">
+                    <div align="center">
+                        <h3 class="title">定期损坏巡查管理</h3>
+
+                        <form action="" method="get">
+                            <input type="hidden" name="_method" value="DELETE"/>
+                        </form>
+
+                        <table border="0" cellspacing="0">
+                            <tr>
+                                <th>编号</th>
+                                <th>名称</th>
+                                <th>操作</th>
+                            </tr>
+                            <tr class="user" th:each="user : ${page.list}">
+                                <td th:text="${user.userNo}" nowrap></td>
+                                <td id="userName" th:text="${user.userName}" nowrap></td>
+                                <td nowrap>
+                                    <button class="update" th:href="@{/user/preUpdate/{userNo}(userNo=${user.userNo})}">
+                                        修改
+                                    </button>
+                                    <button class="delete" th:href="@{/user/remove/{userNo}(userNo=${user.userNo})}">删除
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <div id="pageInfo">
+                            共[[${page.total}]]条,
+                            <span th:if="${ ( page.pageNum - 1 ) * page.pageSize + 1 == page.total }">
+			当前显示第[[${page.total}]]条,
+	</span>
+                            <span th:if="${ ( page.pageNum - 1 ) * page.pageSize + 1 != page.total }">
+			当前显示[[${page.startRow}]]-[[${page.endRow}]]条,
+	</span>
+                            第[[${page.pageNum}]]/[[${page.pages}]]页
+                            |
+                            <a href="#" th:if="${page.pageNum > 1}"><span class="linkspan" id="one">首页</span>&nbsp;</a>
+                            <a href="#" th:if="${page.pageNum > 1}"><span class="linkspan" id="two">上一页</span>&nbsp;</a>
+                            <a href="#" th:if="${page.pageNum < page.pages}"><span class="linkspan"
+                                                                                   id="three">下一页</span>&nbsp;</a>
+                            <a href="#" th:if="${page.pageNum != page.pages}"><span class="linkspan" id="four">末页</span>&nbsp;</a>
+                            |
+                            到<input type="text" id="pageNo" size=4 style="text-align:right;"
+                                    onkeypress="onlynumber();"/> 页
+                            <button class="linkspan" id="five" style="color:black;text-decoration:none;"> 跳 转</button>
+                        </div>
+                        <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+                        <script th:inline="javascript">
+
+                            $(function () {
+                                //删除操作
+                                $(".delete").click(function () {
+                                    var href = $(this).attr("href");
+                                    if (confirm("确定要删除吗?")) {
+                                        $("form:eq(0)").attr("action", href).submit();
+                                        return false;
+                                    }
+                                });
+
+                                $(".update").click(function () {
+                                    var href = $(this).attr("href");
+                                    $(location).attr("href", href);
+                                });
+
+                                //分页操作
+                                $(".linkspan").click(function () {
+
+                                    var pageNo = [[${page.pageNum}]];
+                                    var totalPageNum = [[${page.pages}]];
+                                    var re = /^[0-9]+.?[0-9]*$/;
+
+                                    if (String($(this).attr("id")) == String("one"))
+                                        pageNo = 1;
+
+                                    if (String($(this).attr("id")) == String("two"))
+                                        pageNo = pageNo - 1;
+
+                                    if (String($(this).attr("id")) == String("three"))
+                                        pageNo = pageNo + 1;
+
+                                    if (String($(this).attr("id")) == String("four"))
+                                        pageNo = totalPageNum;
+
+                                    if (String($(this).attr("id")) == String("five")) {
+                                        var num = $.trim($("#pageNo").val());
+
+                                        if (!re.test(num)) {
+                                            alert("输入的不是数字!");
+                                            return;
+                                        }
+                                        pageNo = parseInt(num);
+                                        if (pageNo < 1 || pageNo > totalPageNum) {
+                                            alert("页号超出范围，有效范围：[1-" + totalPageNum + "]!");
+                                            return;
+                                        }
+
+                                    }
+
+                                    var href = "?pageNo=" + pageNo;
+                                    $(location).attr("href", href);
+                                    return false;
+
+                                });
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+        <div class="inner">
+
+            <!-- Search Box -->
+            <section id="search" class="alt">
+                <form method="get" action="#">
+                    <input type="text" name="search" id="search" placeholder="Search..."/>
+                </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <ul>
+                    <li><a th:href="@{/security/mainController}">主页</a></li>
+                    <!--用户-->
+                    <li>
+                        <span class="opener">用户</span>
+                        <ul>
+                            <li><a th:href="@{/user/toInput}">新增用户 #1</a></li>
+                            <li><a th:href="@{/user/list}">用户管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--道路-->
+                    <li>
+                        <span class="opener">道路</span>
+                        <ul>
+                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
+                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
+                        </ul>
+                    </li>
+                    <!--日常巡查-->
+                    <li>
+                        <span class="opener">日常巡查</span>
+                        <ul>
+                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查</a></li>
+                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理</a></li>
+                        </ul>
+                    </li>
+                    <!--定期巡查-->
+                    <li>
+                        <span class="opener">定期巡查</span>
+                        <ul>
+                            <li><a th:href="@{/regularSmooth/toInput}">新增定期平整巡查</a></li>
+                            <li><a th:href="@{/regularSmooth/list}">定期平整巡查管理</a></li>
+                            <li><a th:href="@{/regularDamage/toInput}">新增定期损坏巡查</a></li>
+                            <li><a th:href="@{/regularDamage/list}">定期损坏巡查管理</a></li>
+                        </ul>
+                    </li>
+                    <!--实验室排课-->
+                    <li>
+                        <span class="opener">实验室排课</span>
+                        <ul>
+                            <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
+                            <li><a th:href="@{/course/list}">实验室排课管理</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">External Link</a></li>
+                </ul>
+            </nav>
+
+
+            <!-- Featured Posts -->
+            <div class="featured-posts">
+                <div class="heading">
+                    <h2>Featured Posts</h2>
+                </div>
+                <div class="owl-carousel owl-theme">
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured one">
+                            <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured two">
+                            <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="featured-item">
+                            <img src="assets/images/featured_post_01.jpg" alt="featured three">
+                            <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">Copyright &copy; 2019 Company Name
+                    <br>Designed by CQJTU <a href="http://www.cqjtu.edu.cn/" target="_blank"
+                                             title="重庆交通大学">重庆交通大学</a></p>
+            </footer>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/assets/js/browser.min.js}"></script>
+<script th:src="@{/assets/js/breakpoints.min.js}"></script>
+<script th:src="@{/assets/js/transition.js}"></script>
+<script th:src="@{/assets/js/owl-carousel.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
+</body>
+
+
+</html>
