@@ -43,17 +43,9 @@
             background-color: rgba(83, 91, 160, 1);
 
         }
-
-        th,
-        td {
-            height: 25px;
-            padding: 5px 5px 5px 5px !important;
+        input{
+            font-family: monospace !important;
         }
-
-        #main > .inner {
-            padding: 100px 50px !important;
-        }
-
     </style>
 
 </head>
@@ -78,58 +70,96 @@
             <section class="main-banner">
                 <div class="container-fluid">
                     <div align="center">
-                        <h3 class="title">新增日常巡查:</h3>
+                        <h3 class="title">新增定期损坏巡查:</h3>
                         <div id="dg" style="z-index: 9999; position: fixed ! important; right: 30px; top: 700px;">
                             <table width="" 100% style="position: absolute; width:260px; right: 0px; top: 0px;">
                                 <!--                                //table 内部控件代码-->
-                                <a th:href="@{/dailyInspect/list}">
+                                <a th:href="@{/regularDamage/list}">
                                     <button>返回</button>
                                 </a>
                             </table>
                         </div>
-                        <form th:action="@{/dailyInspect/create}" method="post" th:object="${dailyInspect}">
+                        <form th:action="@{/regularDamage/create}" method="post" th:object="${regularDamage}">
                             <div>
                                 <table border="1" cellspacing="0">
                                     <tr>
-                                        <th width=100px>日常巡查信息编号</th>
-                                        <td colspan="3" width=100px><input size="18" type="text" name="daily_inspect_no"
-                                                                           placeholder="日常巡查信息编号"></td>
+                                        <th>损坏巡查编号</th>
+                                        <th>日期</th>
+                                        <th>道路名称</th>
+                                        <th>巡查人员</th>
                                     </tr>
                                     <tr>
-                                        <th width=100px>日期</th>
-                                        <td width=100px><input size="18" type="date" name="daily_inspect_date"
-                                                               th:value="*{daily_inspect_date}" placeholder="日期"></td>
-                                        <th width=100px>巡查人员</th>
-                                        <td width=100px><select name="inspector_name">
+                                        <td><input type="text" name="damage_no"
+                                                   placeholder="损坏巡查编号"></td>
+                                        <td><input type="date" name="damage_date"
+                                                   th:value="*{damage_date}" placeholder="日期"></td>
+
+                                        <td><select name="road_name">
                                             <option>=请选择=</option>
-                                            <option th:each="list:${userNameList}" th:value="${list.userName}" th:text="${list.userName}"></option>
+                                            <option th:each="list:${roadNameList}" th:value="${list.road_name}"
+                                                    th:text="${list.road_name}"></option>
+                                        </select></td>
+                                        <td><select name="inspector_name">
+                                            <option>=请选择=</option>
+                                            <option th:each="list:${userNameList}" th:value="${list.userName}"
+                                                    th:text="${list.userName}"></option>
                                         </select></td>
                                     </tr>
                                     <tr>
-                                        <th width=100px>道路名称</th>
-                                        <td width=100px><select name="road_name">
-                                            <option>=请选择=</option>
-                                            <option th:each="list:${roadNameList}" th:value="${list.road_name}" th:text="${list.road_name}"></option>
-                                        </select></td>
-                                        <th width=100px>损坏类型</th>
+                                        <th>起止位置</th>
+                                        <th>检查总长</th>
+                                        <th>检查总宽</th>
+                                        <th>损坏类型</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="damage_start"
+                                                   th:value="*{damage_start}"
+                                                   placeholder="起止位置"></td>
+                                        <td><input type="text" name="damage_all_longth"
+                                                   th:value="*{damage_all_longth}"
+                                                   placeholder="检查总长"></td>
+                                        <td><input type="text" name="damage_all_width"
+                                                   th:value="*{damage_all_width}"
+                                                   placeholder="检查总宽"></td>
                                         <td width=100px><select name="damage_type">
                                             <option>=请选择=</option>
-                                            <option th:each="list:${damageTypeList}" th:value="${list.damage_name}" th:text="${list.damage_name}"></option>
+                                            <option th:each="list:${damageTypeList}" th:value="${list.damage_name}"
+                                                    th:text="${list.damage_name}"></option>
                                         </select></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2" width=200px>损坏位置及损坏情况描述</th>
-                                        <td colspan="2" width=200px><input size="57" type="text"
-                                                                           name="daily_inspect_desc"
-                                                                           th:value="*{daily_inspect_desc}"
-                                                                           placeholder="损坏位置及损坏情况描述"></td>
+                                        <th>损坏长</th>
+                                        <th>损坏宽</th>
+                                        <th>损坏高</th>
+                                        <th>损坏面积</th>
                                     </tr>
                                     <tr>
-                                        <th width=100px>备注</th>
-                                        <td colspan="3" width=300px><input size="88" type="text"
-                                                                           name="daily_inspector_ps"
-                                                                           th:value="*{daily_inspector_ps}"
-                                                                           placeholder="备注"></td>
+                                        <td><input type="text" name="damage_longth"
+                                                   th:value="*{damage_longth}"
+                                                   placeholder="损坏长"></td>
+                                        <td><input type="text" name="damage_width"
+                                                   th:value="*{damage_width}"
+                                                   placeholder="损坏宽"></td>
+                                        <td><input type="text" name="damage_height"
+                                                   th:value="*{damage_height}"
+                                                   placeholder="损坏高"></td>
+                                        <td><input type="text" name="damage_area"
+                                                   th:value="*{damage_area}"
+                                                   placeholder="损坏面积"></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">损坏描述</th>
+                                        <th colspan="2">备注</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><input type="text"
+                                                               name="damage_desc"
+                                                               th:value="*{damage_desc}"
+                                                               placeholder="备注"></td>
+                                        <td colspan="2"><input type="text"
+                                                               name="damage_ps"
+                                                               th:value="*{damage_ps}"
+                                                               placeholder="备注"></td>
                                     </tr>
                                 </table>
                                 <div>

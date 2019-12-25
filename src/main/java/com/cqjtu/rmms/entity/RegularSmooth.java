@@ -16,11 +16,11 @@ public class RegularSmooth implements Serializable {
     @Column(name = "smooth_no")
     private String smooth_no;
 
-    @Column(name = "inspector_no")
-    private String inspector_no;
+    @Column(name = "inspector_name")
+    private String inspector_name;
 
-    @Column(name = "road_id")
-    private String road_id;
+    @Column(name = "road_name")
+    private String road_name;
 
     @Column(name = "smooth_IRI")
     private String smooth_IRI;
@@ -39,20 +39,20 @@ public class RegularSmooth implements Serializable {
         this.smooth_no = smooth_no;
     }
 
-    public String getInspector_no() {
-        return inspector_no;
+    public String getInspector_name() {
+        return inspector_name;
     }
 
-    public void setInspector_no(String inspector_no) {
-        this.inspector_no = inspector_no;
+    public void setInspector_name(String inspector_name) {
+        this.inspector_name = inspector_name;
     }
 
-    public String getRoad_id() {
-        return road_id;
+    public String getRoad_name() {
+        return road_name;
     }
 
-    public void setRoad_id(String road_id) {
-        this.road_id = road_id;
+    public void setRoad_name(String road_name) {
+        this.road_name = road_name;
     }
 
     public String getSmooth_IRI() {

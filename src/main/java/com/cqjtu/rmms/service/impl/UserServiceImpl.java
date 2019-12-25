@@ -1,6 +1,5 @@
 package com.cqjtu.rmms.service.impl;
 
-import com.cqjtu.rmms.entity.CourseType;
 import com.cqjtu.rmms.entity.User;
 import com.cqjtu.rmms.mapper.UserMapper;
 import com.cqjtu.rmms.service.UserService;
@@ -8,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
+
+import static java.util.Comparator.comparingLong;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 
 
 @Service
@@ -16,13 +19,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper userMapper ;
+    private UserMapper userMapper;
 
     @Override
     public User get(String userNo) {
 
         User user = null;
-        user=userMapper.selectByPrimaryKey(userNo);
+        user = userMapper.selectByPrimaryKey(userNo);
         return user;
 
     }
@@ -38,6 +41,19 @@ public class UserServiceImpl implements UserService {
     public List<User> loadAll() {
 
         return userMapper.selectAll();
+/**
+ * 测试 mapper.select()
+ *
+        User user = new User();
+        user.setUserNo("000007");
+        user.setUserName("厂子7");
+
+        List<User> userList = userMapper.select(user);
+
+        Set<User> userSet = new TreeSet<>(Comparator.comparing(User::getUserName));
+        userSet.addAll(userList);
+        return new ArrayList<>(userSet);
+*/
 
     }
 
@@ -60,6 +76,17 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.selectByPrimaryKey(userId);
 
+    }
+
+    /**
+     * 注解式
+     * 自定义 mappper 方法调用
+     *
+     * @param userName
+     * @return
+     */
+    public User getUserByName(String userName) {
+        return userMapper.selectByUserName(userName);
     }
 
 }

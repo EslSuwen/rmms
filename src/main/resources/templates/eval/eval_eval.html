@@ -51,7 +51,7 @@
         }
 
         #main > .inner {
-            padding: 100px 50px !important;
+            /*padding: 100px 50px !important;*/
         }
 
     </style>
@@ -78,63 +78,63 @@
             <section class="main-banner">
                 <div class="container-fluid">
                     <div align="center">
-                        <h3 class="title">新增日常巡查:</h3>
+                        <h3 class="title">[[${road_name}]] 路面总体评估:</h3>
                         <div id="dg" style="z-index: 9999; position: fixed ! important; right: 30px; top: 700px;">
                             <table width="" 100% style="position: absolute; width:260px; right: 0px; top: 0px;">
                                 <!--                                //table 内部控件代码-->
-                                <a th:href="@{/dailyInspect/list}">
+                                <a th:href="@{/regularDamage/listEval}">
                                     <button>返回</button>
                                 </a>
                             </table>
                         </div>
-                        <form th:action="@{/dailyInspect/create}" method="post" th:object="${dailyInspect}">
+                        <form th:object="${null}">
                             <div>
                                 <table border="1" cellspacing="0">
                                     <tr>
-                                        <th width=100px>日常巡查信息编号</th>
-                                        <td colspan="3" width=100px><input size="18" type="text" name="daily_inspect_no"
-                                                                           placeholder="日常巡查信息编号"></td>
+                                        <th>评价内容</th>
+                                        <th colspan="2">综合评价指数</th>
+                                        <th colspan="2">平整度</th>
+                                        <th colspan="2">破损状况</th>
                                     </tr>
                                     <tr>
-                                        <th width=100px>日期</th>
-                                        <td width=100px><input size="18" type="date" name="daily_inspect_date"
-                                                               th:value="*{daily_inspect_date}" placeholder="日期"></td>
-                                        <th width=100px>巡查人员</th>
-                                        <td width=100px><select name="inspector_name">
-                                            <option>=请选择=</option>
-                                            <option th:each="list:${userNameList}" th:value="${list.userName}" th:text="${list.userName}"></option>
-                                        </select></td>
+                                        <th>评价指标</th>
+                                        <th>PQI</th>
+                                        <th>等级</th>
+                                        <th>RQI/IRI</th>
+                                        <th>等级</th>
+                                        <th>PCI</th>
+                                        <th>等级</th>
                                     </tr>
-                                    <tr>
-                                        <th width=100px>道路名称</th>
-                                        <td width=100px><select name="road_name">
-                                            <option>=请选择=</option>
-                                            <option th:each="list:${roadNameList}" th:value="${list.road_name}" th:text="${list.road_name}"></option>
-                                        </select></td>
-                                        <th width=100px>损坏类型</th>
-                                        <td width=100px><select name="damage_type">
-                                            <option>=请选择=</option>
-                                            <option th:each="list:${damageTypeList}" th:value="${list.damage_name}" th:text="${list.damage_name}"></option>
-                                        </select></td>
+
+                                    <tr th:object="${evalHelper1}">
+                                        <th>2019年12月</th>
+                                        <td><p th:text="*{PQI}"></p></td>
+                                        <td><p th:text="*{rank_PQI}"></p></td>
+                                        <td><p th:text="*{RQI}"></p></td>
+                                        <td><p th:text="*{rank_RQI}"></p></td>
+                                        <td><p th:text="*{PCI}"></p></td>
+                                        <td><p th:text="*{rank_PCI}"></p></td>
                                     </tr>
-                                    <tr>
-                                        <th colspan="2" width=200px>损坏位置及损坏情况描述</th>
-                                        <td colspan="2" width=200px><input size="57" type="text"
-                                                                           name="daily_inspect_desc"
-                                                                           th:value="*{daily_inspect_desc}"
-                                                                           placeholder="损坏位置及损坏情况描述"></td>
+                                    <tr th:object="${evalHelper2}">
+                                        <th>2019年11月</th>
+                                        <td><p th:text="*{PQI}"></p></td>
+                                        <td><p th:text="*{rank_PQI}"></p></td>
+                                        <td><p th:text="*{RQI}"></p></td>
+                                        <td><p th:text="*{rank_RQI}"></p></td>
+                                        <td><p th:text="*{PCI}"></p></td>
+                                        <td><p th:text="*{rank_PCI}"></p></td>
                                     </tr>
-                                    <tr>
-                                        <th width=100px>备注</th>
-                                        <td colspan="3" width=300px><input size="88" type="text"
-                                                                           name="daily_inspector_ps"
-                                                                           th:value="*{daily_inspector_ps}"
-                                                                           placeholder="备注"></td>
+                                    <tr th:object="${evalHelper3}">
+                                        <th>2019年10月</th>
+                                        <td><p th:text="*{PQI}"></p></td>
+                                        <td><p th:text="*{rank_PQI}"></p></td>
+                                        <td><p th:text="*{RQI}"></p></td>
+                                        <td><p th:text="*{rank_RQI}"></p></td>
+                                        <td><p th:text="*{PCI}"></p></td>
+                                        <td><p th:text="*{rank_PCI}"></p></td>
                                     </tr>
+
                                 </table>
-                                <div>
-                                    <button class="b" type="submit">确定</button>
-                                </div>
                             </div>
                         </form>
                     </div>

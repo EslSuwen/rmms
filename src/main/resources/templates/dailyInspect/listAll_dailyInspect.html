@@ -41,7 +41,7 @@
             <section class="main-banner">
                 <div class="container-fluid">
                     <div align="center">
-                        <h3 class="title">定期平整巡查管理</h3>
+                        <h3 class="title">[[${road_name}]] 日常巡查管理</h3>
 
                         <form action="" method="get">
                             <input type="hidden" name="_method" value="DELETE"/>
@@ -49,16 +49,16 @@
 
                         <table border="0" cellspacing="0">
                             <tr>
+                                <th>巡查时间</th>
                                 <th>巡查人员</th>
-                                <th>道路名称</th>
                                 <th>操作</th>
                             </tr>
-                            <tr class="dailyInspect" th:each="regularSmooth : ${page.list}">
-                                <td th:text="${regularSmooth.inspector_name}" nowrap></td>
-                                <td id="road_name" th:text="${regularSmooth.road_name}" nowrap></td>
+                            <tr class="dailyInspect" th:each="dailyInspect : ${page.list}">
+                                <td id="road_name" th:text="${dailyInspect.daily_inspect_date}" nowrap></td>
+                                <td th:text="${dailyInspect.inspector_name}" nowrap></td>
                                 <td nowrap>
-                                    <button class="delete" th:href="@{/regularSmooth/remove/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">删除</button>
-                                    <button class="info" th:href="@{/regularSmooth/listAll/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">所有记录</button>
+                                    <button class="delete" th:href="@{/dailyInspect/remove/{dailyInspectNo}(dailyInspectNo=${dailyInspect.daily_inspect_no})}">删除</button>
+                                    <button class="info" th:href="@{/dailyInspect/info/{dailyInspectNo}(dailyInspectNo=${dailyInspect.daily_inspect_no})}">详细信息</button>
                                 </td>
                             </tr>
 
@@ -76,12 +76,10 @@
                             |
                             <a href="#" th:if="${page.pageNum > 1}"><span class="linkspan" id="one">首页</span>&nbsp;</a>
                             <a href="#" th:if="${page.pageNum > 1}"><span class="linkspan" id="two">上一页</span>&nbsp;</a>
-                            <a href="#" th:if="${page.pageNum < page.pages}"><span class="linkspan"
-                                                                                   id="three">下一页</span>&nbsp;</a>
+                            <a href="#" th:if="${page.pageNum < page.pages}"><span class="linkspan" id="three">下一页</span>&nbsp;</a>
                             <a href="#" th:if="${page.pageNum != page.pages}"><span class="linkspan" id="four">末页</span>&nbsp;</a>
                             |
-                            到<input type="text" id="pageNo" size=4 style="text-align:right;"
-                                    onkeypress="onlynumber();"/> 页
+                            到<input type="text" id="pageNo" size=4 style="text-align:right;" onkeypress="onlynumber();"/> 页
                             <button class="linkspan" id="five" style="color:black;text-decoration:none;"> 跳 转</button>
                         </div>
                         <script type="text/javascript" th:src="@{/js/jquery-3.1.1.min.js}"></script>
@@ -95,11 +93,19 @@
                                         $("form:eq(0)").attr("action", href).submit();
                                         return false;
                                     }
+
+                                });
+
+                                $(".update").click(function () {
+                                    var href = $(this).attr("href");
+                                    $(location).attr("href", href);
+
                                 });
 
                                 $(".info").click(function () {
                                     var href = $(this).attr("href");
                                     $(location).attr("href", href);
+
                                 });
 
                                 //分页操作
@@ -206,7 +212,6 @@
                     <li><a href="#">External Link</a></li>
                 </ul>
             </nav>
-
 
             <!-- Footer -->
             <footer id="footer">

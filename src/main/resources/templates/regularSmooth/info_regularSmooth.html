@@ -43,6 +43,17 @@
             background-color: rgba(83, 91, 160, 1);
 
         }
+
+        th,
+        td {
+            height: 25px;
+            padding: 5px 5px 5px 5px !important;
+        }
+
+        #main > .inner {
+            padding: 100px 50px !important;
+        }
+
     </style>
 
 </head>
@@ -67,18 +78,61 @@
             <section class="main-banner">
                 <div class="container-fluid">
                     <div align="center">
-                        <h3 class="title">修改用户</h3>
-                        <form th:action="@{/user/update}" method="post" th:object="${user}">
+                        <h3 class="title">日常巡查信息详细信息：</h3>
+                        <div id="dg" style="z-index: 9999; position: fixed ! important; right: 30px; top: 700px;">
+                            <table width="" 100% style="position: absolute; width:260px; right: 0px; top: 0px;">
+                                <!--                                //table 内部控件代码-->
+                                <a th:href="@{/regularSmooth/list}">
+                                    <button>返回</button>
+                                </a>
+                            </table>
+                        </div>
+                        <form th:action="@{/regularSmooth/update}" method="post" th:object="${regularSmooth}">
                             <div>
-                                <span>用户姓名:</span>
-                                <input class="a" type="text" name="userName" th:value="*{userName}" placeholder="用户姓名"><br>
-                                <span>用户账号:</span>
-                                <input class="a" type="text" name="userNo" th:value="*{userNo}" placeholder="用户账号"><br>
-                                <span>用户密码:</span>
-                                <input class="a" type="text" name="userPwd" th:value="*{userPwd}" placeholder="用户密码"><br>
-                            </div>
-                            <div>
-                                <button class="b" type="submit">确定</button>
+                                <table border="1" cellspacing="0">
+                                    <tr>
+                                        <th colspan="4">定期平整巡查信息编号</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><input type="text" name="smooth_no"
+                                                               th:value="*{smooth_no}" placeholder="定期平整巡查信息编号"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>日期</th>
+                                        <th>巡查人员</th>
+                                        <th>道路名称</th>
+                                        <th>IRI</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="date" name="smooth_date"
+                                                   th:value="*{smooth_date}" placeholder="日期"></td>
+                                        <td><select name="inspector_name">
+                                            <option th:text="*{inspector_name}">=请选择=</option>
+                                            <option th:each="list:${userNameList}" th:value="${list.userName}"
+                                                    th:text="${list.userName}"></option>
+                                        </select></td>
+                                        <td><select name="road_name">
+                                            <option th:text="*{road_name}">=请选择=</option>
+                                            <option th:each="list:${roadNameList}" th:value="${list.road_name}"
+                                                    th:text="${list.road_name}"></option>
+                                        </select></td>
+                                        <td><input type="text" name="smooth_IRI"
+                                                   th:value="*{smooth_IRI}"
+                                                   placeholder="IRI"></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4">备注</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><input type="text"
+                                                               name="smooth_ps"
+                                                               th:value="*{smooth_ps}"
+                                                               placeholder="备注"></td>
+                                    </tr>
+                                </table>
+                                <div>
+                                    <button class="b" type="submit">确定</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -124,59 +178,25 @@
                     <li>
                         <span class="opener">日常巡查</span>
                         <ul>
-                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查</a></li>
-                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理</a></li>
+                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查 #1</a></li>
+                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理 #2</a></li>
                         </ul>
                     </li>
                     <!--定期巡查-->
                     <li>
                         <span class="opener">定期巡查</span>
                         <ul>
-                            <li><a th:href="@{/regularSmooth/toInput}">新增定期平整巡查</a></li>
-                            <li><a th:href="@{/regularSmooth/list}">定期平整巡查管理</a></li>
-                            <li><a th:href="@{/regularDamage/toInput}">新增定期损坏巡查</a></li>
-                            <li><a th:href="@{/regularDamage/list}">定期损坏巡查管理</a></li>
+                            <li><a th:href="@{/regularSmooth/toInput}">新增定期平整巡查 #1</a></li>
+                            <li><a th:href="@{/regularSmooth/list}">定期平整巡查管理 #2</a></li>
+                            <li><a th:href="@{/regularDamage/toInput}">新增定期损坏巡查 #3</a></li>
+                            <li><a th:href="@{/regularDamage/list}">定期损坏巡查管理 #4</a></li>
                         </ul>
                     </li>
-                    <!--实验室排课-->
-                    <li>
-                        <span class="opener">实验室排课</span>
-                        <ul>
-                            <li><a th:href="@{/course/toInput}">实验室排课申请</a></li>
-                            <li><a th:href="@{/course/list}">实验室排课管理</a></li>
-                        </ul>
-                    </li>
+                    <!--技术状况评价-->
+                    <li><a th:href="@{/regularDamage/listEval}">技术状况评价</a></li>
                     <li><a href="#">External Link</a></li>
                 </ul>
             </nav>
-
-
-            <!-- Featured Posts -->
-            <div class="featured-posts">
-                <div class="heading">
-                    <h2>Featured Posts</h2>
-                </div>
-                <div class="owl-carousel owl-theme">
-                    <a href="#">
-                        <div class="featured-item">
-                            <img src="assets/images/featured_post_01.jpg" alt="featured one">
-                            <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="featured-item">
-                            <img src="assets/images/featured_post_01.jpg" alt="featured two">
-                            <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="featured-item">
-                            <img src="assets/images/featured_post_01.jpg" alt="featured three">
-                            <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
             <!-- Footer -->
             <footer id="footer">

@@ -10,9 +10,8 @@ public interface DailyInspectService {
     /**
      * 获取一条日常巡查数据
      *
-     * @param  dailyInspectNo
+     * @param dailyInspectNo
      * @return DailyInspect
-     *
      */
     DailyInspect get(String dailyInspectNo);
 
@@ -20,9 +19,8 @@ public interface DailyInspectService {
     /**
      * 新增一条日常巡查数据
      *
-     * @param  dailyInspect
+     * @param dailyInspect
      * @return DailyInspect
-     *
      */
     void addDailyInspect(DailyInspect dailyInspect);
 
@@ -30,8 +28,7 @@ public interface DailyInspectService {
     /**
      * 删除一条日常巡查数据记录
      *
-     * @param  dailyInspectId
-     *
+     * @param dailyInspectId
      */
     void removeDailyInspect(Integer dailyInspectId);
 
@@ -39,7 +36,6 @@ public interface DailyInspectService {
      * 更新一条日常巡查记录
      *
      * @param dailyInspect
-     *
      */
     void updateDailyInspect(DailyInspect dailyInspect);
 
@@ -48,17 +44,28 @@ public interface DailyInspectService {
      *
      * @param dailyInspectId
      * @return DailyInspect
-     *
      */
     DailyInspect getDailyInspectById(Integer dailyInspectId);
 
     /**
-     *  获取所有日常巡查数据记录
+     * 获取所有日常巡查数据记录
      *
      * @return List
-     *
      */
     List<DailyInspect> loadAll();
 
+    /**
+     * 获取特征日常巡查数据记录
+     *
+     * @return List
+     */
+    List<DailyInspect> select(DailyInspect dailyInspect);
+
+    /**
+     * 获取所有各道路巡查数据记录
+     *
+     * @return List
+     */
+    List<DailyInspect> loadDistinct();
 }
 

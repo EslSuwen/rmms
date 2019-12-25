@@ -5,11 +5,12 @@ import com.cqjtu.rmms.mapper.DailyInspectMapper;
 import com.cqjtu.rmms.mapper.InspectorMapper;
 import com.cqjtu.rmms.mapper.RoadMapper;
 import com.cqjtu.rmms.service.DailyInspectService;
+import com.cqjtu.rmms.utils.DamageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -68,5 +69,22 @@ public class DailyInspectServiceImpl implements DailyInspectService {
         return dailyInspectMapper.selectByPrimaryKey(dailyInspectId);
 
     }
+
+    @Override
+    public List<DailyInspect> loadDistinct() {
+
+        Set<DailyInspect> dailyInspectSet=new TreeSet<>(Comparator.comparing(DailyInspect::getRoad_name));
+        dailyInspectSet.addAll(dailyInspectMapper.selectAll());
+        return new ArrayList<>(dailyInspectSet);
+
+    }
+
+    @Override
+    public List<DailyInspect> select(DailyInspect dailyInspect){
+
+        return dailyInspectMapper.select(dailyInspect);
+
+    }
+
 
 }

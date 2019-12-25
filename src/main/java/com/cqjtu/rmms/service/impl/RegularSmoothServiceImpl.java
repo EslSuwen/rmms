@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -15,13 +15,13 @@ import java.util.List;
 public class RegularSmoothServiceImpl implements RegularSmoothService {
 
     @Autowired
-    private RegularSmoothMapper regularSmoothMapper ;
+    private RegularSmoothMapper regularSmoothMapper;
 
     @Override
     public RegularSmooth get(String regularSmoothNo) {
 
         RegularSmooth regularSmooth = null;
-        regularSmooth=regularSmoothMapper.selectByPrimaryKey(regularSmoothNo);
+        regularSmooth = regularSmoothMapper.selectByPrimaryKey(regularSmoothNo);
         return regularSmooth;
 
     }
@@ -60,5 +60,22 @@ public class RegularSmoothServiceImpl implements RegularSmoothService {
         return regularSmoothMapper.selectByPrimaryKey(regularSmoothId);
 
     }
+
+    @Override
+    public List<RegularSmooth> select(RegularSmooth regularSmooth) {
+
+        return regularSmoothMapper.select(regularSmooth);
+
+    }
+
+    @Override
+    public List<RegularSmooth> loadDistinct() {
+
+        Set<RegularSmooth> dailyInspectSet = new TreeSet<>(Comparator.comparing(RegularSmooth::getRoad_name));
+        dailyInspectSet.addAll(regularSmoothMapper.selectAll());
+        return new ArrayList<>(dailyInspectSet);
+
+    }
+
 
 }

@@ -60,5 +60,19 @@ public interface RegularSmoothService {
      */
     List<RegularSmooth> loadAll();
 
+    /**
+     * 获取特征定期平整查数据记录
+     *
+     * @return List
+     */
+    List<RegularSmooth> select(RegularSmooth regularSmooth);
+
+    /**
+     * 获取所有各道路定期平整巡查数据记录
+     *
+     * @return List
+     */
+    List<RegularSmooth> loadDistinct();
+
 }
 

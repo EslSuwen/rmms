@@ -76,8 +76,8 @@ public class DailyInspectController {
          * 第二个参数：每页获取的条数.
          */
         PageHelper.startPage(pageNo, 4);
-        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
-
+//        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
+        List<DailyInspect> dailyInspectList = dailyInspectService.loadDistinct();
         PageInfo<DailyInspect> page = new PageInfo<>(dailyInspectList);
 
         map.put("page", page);
@@ -123,5 +123,35 @@ public class DailyInspectController {
         map.put("dailyInspect", dailyInspectService.getDailyInspectById(dailyInspectNo));
 
         return "dailyInspect/info_dailyInspect";
+    }
+
+    @GetMapping("/listAll/{dailyInspectNo}")
+    public String listAll(@PathVariable("dailyInspectNo") Integer dailyInspectNo, Map<String, Object> map, @RequestParam(value = "pageNo", required = false, defaultValue = "1") String pageNoStr) {
+
+        int pageNo = 1;
+
+        //对 pageNo 的校验
+        pageNo = Integer.parseInt(pageNoStr);
+        if (pageNo < 1) {
+            pageNo = 1;
+        }
+
+        /*
+         * 第一个参数：第几页;
+         * 第二个参数：每页获取的条数.
+         */
+        PageHelper.startPage(pageNo, 4);
+        String key_name = dailyInspectService.getDailyInspectById(dailyInspectNo).getRoad_name();
+        DailyInspect dailyInspect=new DailyInspect();
+        dailyInspect.setRoad_name(key_name);
+
+//        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
+        List<DailyInspect> dailyInspectList = dailyInspectService.select(dailyInspect);
+        PageInfo<DailyInspect> page = new PageInfo<>(dailyInspectList);
+
+        map.put("page", page);
+        map.put("road_name",key_name);
+
+        return "dailyInspect/listAll_dailyInspect";
     }
 }

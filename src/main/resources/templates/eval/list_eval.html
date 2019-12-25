@@ -41,7 +41,7 @@
             <section class="main-banner">
                 <div class="container-fluid">
                     <div align="center">
-                        <h3 class="title">定期平整巡查管理</h3>
+                        <h3 class="title">技术状况评价管理</h3>
 
                         <form action="" method="get">
                             <input type="hidden" name="_method" value="DELETE"/>
@@ -53,12 +53,12 @@
                                 <th>道路名称</th>
                                 <th>操作</th>
                             </tr>
-                            <tr class="dailyInspect" th:each="regularSmooth : ${page.list}">
-                                <td th:text="${regularSmooth.inspector_name}" nowrap></td>
-                                <td id="road_name" th:text="${regularSmooth.road_name}" nowrap></td>
+                            <tr class="dailyInspect" th:each="regularDamage : ${page.list}">
+                                <td th:text="${regularDamage.inspector_name}" nowrap></td>
+                                <td id="road_name" th:text="${regularDamage.road_name}" nowrap></td>
                                 <td nowrap>
-                                    <button class="delete" th:href="@{/regularSmooth/remove/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">删除</button>
-                                    <button class="info" th:href="@{/regularSmooth/listAll/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">所有记录</button>
+                                    <button class="info" th:href="@{/regularDamage/pointEval/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">扣分表</button>
+                                    <button class="info" th:href="@{/regularDamage/evalEval/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">综合评价</button>
                                 </td>
                             </tr>
 
@@ -206,7 +206,6 @@
                     <li><a href="#">External Link</a></li>
                 </ul>
             </nav>
-
 
             <!-- Footer -->
             <footer id="footer">
