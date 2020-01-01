@@ -75,7 +75,7 @@ public class DailyInspectController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 4);
+        PageHelper.startPage(pageNo, 20);
 //        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
         List<DailyInspect> dailyInspectList = dailyInspectService.loadDistinct();
         PageInfo<DailyInspect> page = new PageInfo<>(dailyInspectList);
@@ -142,7 +142,7 @@ public class DailyInspectController {
          */
         PageHelper.startPage(pageNo, 4);
         String key_name = dailyInspectService.getDailyInspectById(dailyInspectNo).getRoad_name();
-        DailyInspect dailyInspect=new DailyInspect();
+        DailyInspect dailyInspect = new DailyInspect();
         dailyInspect.setRoad_name(key_name);
 
 //        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
@@ -150,7 +150,7 @@ public class DailyInspectController {
         PageInfo<DailyInspect> page = new PageInfo<>(dailyInspectList);
 
         map.put("page", page);
-        map.put("road_name",key_name);
+        map.put("road_name", key_name);
 
         return "dailyInspect/listAll_dailyInspect";
     }

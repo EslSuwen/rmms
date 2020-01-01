@@ -56,10 +56,12 @@ public class UserController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 4);
-        List<User> userList=userService.loadAll();
-
+        PageHelper.startPage(pageNo, 20);
+        List<User> userList = userService.loadDistinct();
+//        List<User> userList = userService.loadAll();
         PageInfo<User> page = new PageInfo<>(userList);
+
+        System.out.println(userList.size());
 
         map.put("page", page);
 

@@ -3,21 +3,7 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-
-    <title>RMMS</title>
-
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" th:href="@{/assets/css/fontawesome.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/templatemo-style.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/owl.css}">
+    <div th:replace="templates::head_include"></div>
 
     <style type="text/css">
         .a {
@@ -430,83 +416,12 @@
     </div>
 
     <!-- Sidebar -->
-    <div id="sidebar">
-
-        <div class="inner">
-
-            <!-- Search Box -->
-            <section id="search" class="alt">
-                <form method="get" action="#">
-                    <input type="text" name="search" id="search" placeholder="Search..."/>
-                </form>
-            </section>
-
-            <!-- Menu -->
-            <nav id="menu">
-                <ul>
-                    <li><a th:href="@{/security/mainController}">主页</a></li>
-                    <!--用户-->
-                    <li>
-                        <span class="opener">用户</span>
-                        <ul>
-                            <li><a th:href="@{/user/toInput}">新增用户 #1</a></li>
-                            <li><a th:href="@{/user/list}">用户管理 #2</a></li>
-                        </ul>
-                    </li>
-                    <!--道路-->
-                    <li>
-                        <span class="opener">道路</span>
-                        <ul>
-                            <li><a th:href="@{/road/toInput}">新增道路 #1</a></li>
-                            <li><a th:href="@{/road/list}">道路管理 #2</a></li>
-                        </ul>
-                    </li>
-                    <!--日常巡查-->
-                    <li>
-                        <span class="opener">日常巡查</span>
-                        <ul>
-                            <li><a th:href="@{/dailyInspect/toInput}">新增日常巡查 #1</a></li>
-                            <li><a th:href="@{/dailyInspect/list}">日常巡查管理 #2</a></li>
-                        </ul>
-                    </li>
-                    <!--定期巡查-->
-                    <li>
-                        <span class="opener">定期巡查</span>
-                        <ul>
-                            <li><a th:href="@{/regularSmooth/toInput}">新增定期平整巡查 #1</a></li>
-                            <li><a th:href="@{/regularSmooth/list}">定期平整巡查管理 #2</a></li>
-                            <li><a th:href="@{/regularDamage/toInput}">新增定期损坏巡查 #3</a></li>
-                            <li><a th:href="@{/regularDamage/list}">定期损坏巡查管理 #4</a></li>
-                        </ul>
-                    </li>
-                    <!--技术状况评价-->
-                    <li><a th:href="@{/regularDamage/listEval}">技术状况评价</a></li>
-                    <li><a href="#">External Link</a></li>
-                </ul>
-            </nav>
-
-            <!-- Footer -->
-            <footer id="footer">
-                <p class="copyright">Copyright &copy; 2019 Company Name
-                    <br>Designed by CQJTU <a href="http://www.cqjtu.edu.cn/" target="_blank"
-                                             title="重庆交通大学">重庆交通大学</a></p>
-            </footer>
-
-        </div>
-    </div>
+    <div id="sidebar" th:replace="templates::sidebar"></div>
 
 </div>
 
-<!-- Scripts -->
-<!-- Bootstrap core JavaScript -->
-<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<div th:replace="templates::tail_include"></div>
 
-<script th:src="@{/assets/js/browser.min.js}"></script>
-<script th:src="@{/assets/js/breakpoints.min.js}"></script>
-<script th:src="@{/assets/js/transition.js}"></script>
-<script th:src="@{/assets/js/owl-carousel.js}"></script>
-<script th:src="@{/assets/js/custom.js}"></script>
 </body>
 
 

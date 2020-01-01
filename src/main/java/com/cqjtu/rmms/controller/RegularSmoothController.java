@@ -68,7 +68,7 @@ public class RegularSmoothController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 4);
+        PageHelper.startPage(pageNo, 20);
         List<RegularSmooth> regularSmoothList=regularSmoothService.loadDistinct();
 
         PageInfo<RegularSmooth> page = new PageInfo<>(regularSmoothList);

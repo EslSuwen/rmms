@@ -76,7 +76,7 @@ public class RegularDamageController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 4);
+        PageHelper.startPage(pageNo, 20);
         List<RegularDamage> regularDamageList = regularDamageService.loadDistinct();
 
         PageInfo<RegularDamage> page = new PageInfo<>(regularDamageList);
@@ -171,7 +171,7 @@ public class RegularDamageController {
          * 第一个参数：第几页;
          * 第二个参数：每页获取的条数.
          */
-        PageHelper.startPage(pageNo, 4);
+        PageHelper.startPage(pageNo, 20);
         List<RegularDamage> regularDamageList = regularDamageService.loadDistinct();
 
         PageInfo<RegularDamage> page = new PageInfo<>(regularDamageList);

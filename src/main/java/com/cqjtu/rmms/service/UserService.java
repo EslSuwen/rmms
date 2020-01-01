@@ -60,5 +60,13 @@ public interface UserService {
      */
     List<User> loadAll();
 
+    /**
+     *  获取单一用户记录
+     *
+     * @return List
+     *
+     */
+    List<User> loadDistinct();
+
 }
 

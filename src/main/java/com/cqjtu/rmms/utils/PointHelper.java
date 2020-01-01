@@ -20,8 +20,8 @@ public class PointHelper {
     public PointHelper(RegularDamage regularDamage) {
         this.type = regularDamage.getDamage_type();
         this.area = regularDamage.getDamage_area();
-        this.density = "" + new Random().nextInt(10);
-        this.point = "" + new Random().nextInt(10) + this.density;
+        this.density = "" + new Random(Integer.parseInt(regularDamage.getDamage_height())).nextInt(10);
+        this.point = "" + (new Random(Integer.parseInt(regularDamage.getDamage_width())).nextInt(10) + 5);
     }
 
     public PointHelper(String type, String area, String density) {
