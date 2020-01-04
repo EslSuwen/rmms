@@ -24,7 +24,15 @@ public class UserController {
      */
     @GetMapping("/toInput")
     public String input(Map<String, Object> map) {
-        map.put("user", new User());
+
+        /**
+         * 实现编号自增
+         */
+        List<User> userList = userService.loadAll();
+        User new_nser = new User(), user = userList.get(userList.size() - 1);
+        new_nser.setUserNo("" + (Integer.parseInt(user.getUserNo()) + 1));
+
+        map.put("user", new_nser);
 
         return "user/input_user";
     }

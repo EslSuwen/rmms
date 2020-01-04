@@ -35,12 +35,12 @@
 
                         <table border="0" cellspacing="0">
                             <tr>
-                                <th>巡查人员</th>
+                                <th>序号</th>
                                 <th>道路名称</th>
                                 <th>操作</th>
                             </tr>
-                            <tr class="dailyInspect" th:each="regularSmooth : ${page.list}">
-                                <td th:text="${regularSmooth.inspector_name}" nowrap></td>
+                            <tr class="dailyInspect" th:each="regularSmooth, iterStat : ${page.list}">
+                                <td th:text="${iterStat.index+1}" nowrap></td>
                                 <td id="road_name" th:text="${regularSmooth.road_name}" nowrap></td>
                                 <td nowrap>
                                     <button class="delete" th:href="@{/regularSmooth/remove/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">删除</button>

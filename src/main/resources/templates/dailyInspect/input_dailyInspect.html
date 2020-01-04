@@ -78,8 +78,8 @@
                                 <table border="1" cellspacing="0">
                                     <tr>
                                         <th width=100px>日常巡查信息编号</th>
-                                        <td colspan="3" width=100px><input size="18" type="text" name="daily_inspect_no"
-                                                                           placeholder="日常巡查信息编号"></td>
+                                        <td colspan="3" width=100px><input size="18" name="daily_inspect_no"
+                                                                           readonly="readonly" th:value="${dailyInspect.daily_inspect_no}"></td>
                                     </tr>
                                     <tr>
                                         <th width=100px>日期</th>

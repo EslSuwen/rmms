@@ -35,16 +35,22 @@
 
                         <table border="0" cellspacing="0">
                             <tr>
-                                <th>巡查人员</th>
+                                <th>序号</th>
                                 <th>道路名称</th>
                                 <th>操作</th>
                             </tr>
-                            <tr class="dailyInspect" th:each="regularDamage : ${page.list}">
-                                <td th:text="${regularDamage.inspector_name}" nowrap></td>
+                            <tr class="dailyInspect" th:each="regularDamage, iterStat : ${page.list}">
+                                <td th:text="${iterStat.index+1}" nowrap></td>
                                 <td id="road_name" th:text="${regularDamage.road_name}" nowrap></td>
                                 <td nowrap>
-                                    <button class="delete" th:href="@{/regularDamage/remove/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">删除</button>
-                                    <button class="info" th:href="@{/regularDamage/listAll/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">所有记录</button>
+                                    <button class="delete"
+                                            th:href="@{/regularDamage/remove/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">
+                                        删除
+                                    </button>
+                                    <button class="info"
+                                            th:href="@{/regularDamage/listAll/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">
+                                        所有记录
+                                    </button>
                                 </td>
                             </tr>
 

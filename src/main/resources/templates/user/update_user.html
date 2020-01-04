@@ -56,10 +56,10 @@
                         <h3 class="title">修改用户</h3>
                         <form th:action="@{/user/update}" method="post" th:object="${user}">
                             <div>
+                                <span>用户账号:</span>
+                                <input class="a" name="userNo" readonly="readonly" th:value="*{userNo}"><br>
                                 <span>用户姓名:</span>
                                 <input class="a" type="text" name="userName" th:value="*{userName}" placeholder="用户姓名"><br>
-                                <span>用户账号:</span>
-                                <input class="a" type="text" name="userNo" th:value="*{userNo}" placeholder="用户账号"><br>
                                 <span>用户密码:</span>
                                 <input class="a" type="text" name="userPwd" th:value="*{userPwd}" placeholder="用户密码"><br>
                             </div>

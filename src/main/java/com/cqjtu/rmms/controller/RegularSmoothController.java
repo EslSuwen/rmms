@@ -32,11 +32,18 @@ public class RegularSmoothController {
     @GetMapping("/toInput")
     public String input(Map<String, Object> map) {
 
+        /**
+         * 实现编号自增
+         */
+        List<RegularSmooth> regularSmoothList = regularSmoothService.loadAll();
+        RegularSmooth new_smooth = new RegularSmooth(), regularSmooth = regularSmoothList.get(regularSmoothList.size() - 1);
+        new_smooth.setSmooth_no("" + (Integer.parseInt(regularSmooth.getSmooth_no()) + 1));
+
         map.put("roadNameList", roadService.loadAll());
 
         map.put("userNameList", userService.loadAll());
 
-        map.put("regularSmooth", new RegularSmooth());
+        map.put("regularSmooth", new_smooth);
 
         return "regularSmooth/input_regularSmooth";
     }
@@ -69,7 +76,7 @@ public class RegularSmoothController {
          * 第二个参数：每页获取的条数.
          */
         PageHelper.startPage(pageNo, 20);
-        List<RegularSmooth> regularSmoothList=regularSmoothService.loadDistinct();
+        List<RegularSmooth> regularSmoothList = regularSmoothService.loadDistinct();
 
         PageInfo<RegularSmooth> page = new PageInfo<>(regularSmoothList);
 
@@ -131,14 +138,14 @@ public class RegularSmoothController {
          */
         PageHelper.startPage(pageNo, 4);
         String key_name = regularSmoothService.getRegularSmoothById(regularSmoothNo).getRoad_name();
-        RegularSmooth regularSmooth=new RegularSmooth();
+        RegularSmooth regularSmooth = new RegularSmooth();
         regularSmooth.setRoad_name(key_name);
 
         List<RegularSmooth> regularSmoothList = regularSmoothService.select(regularSmooth);
         PageInfo<RegularSmooth> page = new PageInfo<>(regularSmoothList);
 
         map.put("page", page);
-        map.put("road_name",key_name);
+        map.put("road_name", key_name);
 
         return "regularSmooth/listAll_regularSmooth";
     }

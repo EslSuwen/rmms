@@ -35,11 +35,18 @@ public class RegularDamageController {
     @GetMapping("/toInput")
     public String input(Map<String, Object> map) {
 
+        /**
+         * 实现编号自增
+         */
+        List<RegularDamage> regularDamageList = regularDamageService.loadAll();
+        RegularDamage new_damage = new RegularDamage(), regularDamage = regularDamageList.get(regularDamageList.size() - 1);
+        new_damage.setDamage_no("" + (Integer.parseInt(regularDamage.getDamage_no()) + 1));
+
         map.put("roadNameList", roadService.loadAll());
 
         map.put("userNameList", userService.loadAll());
 
-        map.put("regularDamage", new RegularDamage());
+        map.put("regularDamage", new_damage);
 
         DamageTypeHelper damageTypeHelper = new DamageTypeHelper();
 

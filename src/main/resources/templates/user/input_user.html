@@ -56,10 +56,10 @@
                         <h3 class="title">新增用户</h3>
                         <form th:action="@{/user/create}" method="post" th:object="${user}">
                             <div>
+                                <span>用户账号:</span>
+                                <input class="a" readonly="readonly" name="userNo" th:value="${user.userNo}"><br>
                                 <span>用户姓名:</span>
                                 <input class="a" type="text" name="userName" placeholder="用户姓名"><br>
-                                <span>用户账号:</span>
-                                <input class="a" type="text" name="userNo" placeholder="用户账号"><br>
                                 <span>用户密码:</span>
                                 <input class="a" type="text" name="userPwd" placeholder="用户密码"><br>
                             </div>

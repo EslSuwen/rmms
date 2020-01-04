@@ -75,8 +75,8 @@
                                         <th>巡查人员</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="damage_no"
-                                                   placeholder="损坏巡查编号"></td>
+                                        <td><input name="damage_no" readonly="readonly"
+                                                   th:value="${regularDamage.damage_no}"></td>
                                         <td><input type="date" name="damage_date"
                                                    th:value="*{damage_date}" placeholder="日期"></td>
 
@@ -98,13 +98,13 @@
                                         <th>损坏类型</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="damage_start"
+                                        <td><input type="number" name="damage_start"
                                                    th:value="*{damage_start}"
                                                    placeholder="起止位置"></td>
-                                        <td><input type="text" name="damage_all_longth"
+                                        <td><input type="number" name="damage_all_longth"
                                                    th:value="*{damage_all_longth}"
                                                    placeholder="检查总长"></td>
-                                        <td><input type="text" name="damage_all_width"
+                                        <td><input type="number" name="damage_all_width"
                                                    th:value="*{damage_all_width}"
                                                    placeholder="检查总宽"></td>
                                         <td width=100px><select name="damage_type">
@@ -120,16 +120,16 @@
                                         <th>损坏面积</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" name="damage_longth"
+                                        <td><input type="number" name="damage_longth"
                                                    th:value="*{damage_longth}"
                                                    placeholder="损坏长"></td>
-                                        <td><input type="text" name="damage_width"
+                                        <td><input type="number" name="damage_width"
                                                    th:value="*{damage_width}"
                                                    placeholder="损坏宽"></td>
-                                        <td><input type="text" name="damage_height"
+                                        <td><input type="number" name="damage_height"
                                                    th:value="*{damage_height}"
                                                    placeholder="损坏高"></td>
-                                        <td><input type="text" name="damage_area"
+                                        <td><input type="number" name="damage_area"
                                                    th:value="*{damage_area}"
                                                    placeholder="损坏面积"></td>
                                     </tr>

@@ -69,8 +69,8 @@
                                         <th colspan="4">定期平整巡查信息编号</th>
                                     </tr>
                                     <tr>
-                                        <td colspan="4"><input type="text" name="smooth_no"
-                                                               placeholder="定期平整巡查信息编号"></td>
+                                        <td colspan="4"><input type="text" name="smooth_no" readonly="readonly"
+                                                               th:value="${regularSmooth.smooth_no}"></td>
                                     </tr>
                                     <tr>
                                         <th>日期</th>
@@ -91,7 +91,7 @@
                                             <option th:each="list:${roadNameList}" th:value="${list.road_name}"
                                                     th:text="${list.road_name}"></option>
                                         </select></td>
-                                        <td><input type="text" name="smooth_IRI"
+                                        <td><input type="number" name="smooth_IRI"
                                                    th:value="*{smooth_IRI}"
                                                    placeholder="IRI"></td>
                                     </tr>

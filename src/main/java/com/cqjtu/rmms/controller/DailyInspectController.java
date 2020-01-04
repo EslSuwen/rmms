@@ -34,6 +34,13 @@ public class DailyInspectController {
     @GetMapping("/toInput")
     public String input(Map<String, Object> map) {
 
+        /**
+         * 实现编号自增
+         */
+        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
+        DailyInspect new_inspect = new DailyInspect(), dailyInspect = dailyInspectList.get(dailyInspectList.size() - 1);
+        new_inspect.setDaily_inspect_no("" + (Integer.parseInt(dailyInspect.getDaily_inspect_no()) + 1));
+
         DamageTypeHelper damageTypeHelper = new DamageTypeHelper();
 
         if (damageTypeHelper.get() != null)
@@ -43,7 +50,7 @@ public class DailyInspectController {
 
         map.put("userNameList", userService.loadAll());
 
-        map.put("dailyInspect", new DailyInspect());
+        map.put("dailyInspect", new_inspect);
 
         return "dailyInspect/input_dailyInspect";
     }

@@ -23,7 +23,16 @@ public class RoadController {
      */
     @GetMapping("/toInput")
     public String input(Map<String, Object> map) {
-        map.put("road", new Road());
+
+        /**
+         * 实现编号自增
+         */
+        List<Road> roadList = roadService.loadAll();
+        Road road = roadList.get(roadList.size() - 1);
+        road.setRoad_id("" + (Integer.parseInt(road.getRoad_id()) + 1));
+
+        map.put("road", road);
+
         return "road/input_road";
     }
 
