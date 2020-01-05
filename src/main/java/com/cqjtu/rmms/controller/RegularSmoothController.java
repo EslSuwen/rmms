@@ -92,6 +92,17 @@ public class RegularSmoothController {
         return "redirect:/regularSmooth/list";
     }
 
+    @GetMapping(value = "/removeByRoad/{roadName}")
+    public String remove(@PathVariable("roadName") String roadName) {
+
+        List<RegularSmooth> regularSmoothList = regularSmoothService.loadAll();
+        for (RegularSmooth each : regularSmoothList) {
+            if (each.getRoad_name().equals(roadName))
+                regularSmoothService.removeRegularSmooth(Integer.parseInt(each.getSmooth_no()));
+        }
+        return "redirect:/regularSmooth/list";
+    }
+
     @GetMapping(value = "/preUpdate/{regularSmoothNo}")
     public String preUpdate(@PathVariable("regularSmoothNo") Integer regularSmoothNo, Map<String, Object> map) {
         System.out.println(regularSmoothService.getRegularSmoothById(regularSmoothNo));

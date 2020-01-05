@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 
@@ -33,12 +35,17 @@ public class SecurityController {
 
 
     @PostMapping(value="/login")
-    public String login(User user,Map<String, Object> map){
+    public String login(User user, Map<String, Object> map, HttpServletRequest request){
 
         if(userService.get(user.getUserNo())!=null){
             User user1=userService.get(user.getUserNo());
             if(user1.getUserPwd().equals(user.getUserPwd())){
                 map.put("user",user1);
+
+                //获取session并将userName存入session对象
+                HttpSession session=request.getSession();
+                session.setAttribute("USER_SESSION_KEY", user1);
+
                 return "main";
             }
         }

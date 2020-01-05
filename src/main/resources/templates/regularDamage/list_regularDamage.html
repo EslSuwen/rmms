@@ -44,7 +44,7 @@
                                 <td id="road_name" th:text="${regularDamage.road_name}" nowrap></td>
                                 <td nowrap>
                                     <button class="delete"
-                                            th:href="@{/regularDamage/remove/{regularDamageNo}(regularDamageNo=${regularDamage.damage_no})}">
+                                            th:href="@{/regularDamage/removeByRoad/{roadName}(roadName=${regularDamage.road_name})}">
                                         删除
                                     </button>
                                     <button class="info"

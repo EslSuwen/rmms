@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.standard.expression.Each;
 
 import java.util.List;
 import java.util.Map;
@@ -97,6 +98,17 @@ public class RegularDamageController {
     public String remove(@PathVariable("regularDamageNo") Integer regularDamageNo) {
 
         regularDamageService.removeRegularDamage(regularDamageNo);
+        return "redirect:/regularDamage/list";
+    }
+
+    @GetMapping(value = "/removeByRoad/{roadName}")
+    public String removeByRoad(@PathVariable("roadName") String roadName) {
+
+        List<RegularDamage> regularDamageList = regularDamageService.loadAll();
+        for (RegularDamage each : regularDamageList) {
+            if (each.getRoad_name().equals(roadName))
+                regularDamageService.removeRegularDamage(Integer.parseInt(each.getDamage_no()));
+        }
         return "redirect:/regularDamage/list";
     }
 

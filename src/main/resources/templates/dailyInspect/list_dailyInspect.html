@@ -43,7 +43,7 @@
                                 <td th:text="${dailyInspect.daily_inspect_no}" nowrap></td>
                                 <td id="road_name" th:text="${dailyInspect.road_name}" nowrap></td>
                                 <td nowrap>
-                                    <button class="delete" th:href="@{/dailyInspect/remove/{dailyInspectNo}(dailyInspectNo=${dailyInspect.daily_inspect_no})}">删除</button>
+                                    <button class="delete" th:href="@{/dailyInspect/removeByRoad/{roadName}(roadName=${dailyInspect.road_name})}">删除</button>
 <!--                                    <button class="info" th:href="@{/dailyInspect/info/{dailyInspectNo}(dailyInspectNo=${dailyInspect.daily_inspect_no})}">详细信息</button>-->
                                     <button class="info" th:href="@{/dailyInspect/listAll/{dailyInspectNo}(dailyInspectNo=${dailyInspect.daily_inspect_no})}">所有记录</button>
                                 </td>

@@ -99,6 +99,17 @@ public class DailyInspectController {
         return "redirect:/dailyInspect/list";
     }
 
+    @GetMapping(value = "/removeByRoad/{roadName}")
+    public String removeByRoad(@PathVariable("roadName") String roadName) {
+
+        List<DailyInspect> dailyInspectList = dailyInspectService.loadAll();
+        for (DailyInspect each : dailyInspectList) {
+            if (each.getRoad_name().equals(roadName))
+                dailyInspectService.removeDailyInspect(Integer.parseInt(each.getDaily_inspect_no()));
+        }
+        return "redirect:/dailyInspect/list";
+    }
+
     @GetMapping(value = "/preUpdate/{dailyInspectNo}")
     public String preUpdate(@PathVariable("dailyInspectNo") Integer dailyInspectNo, Map<String, Object> map) {
         System.out.println(dailyInspectService.getDailyInspectById(dailyInspectNo));

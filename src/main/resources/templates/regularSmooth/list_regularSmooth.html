@@ -43,7 +43,7 @@
                                 <td th:text="${iterStat.index+1}" nowrap></td>
                                 <td id="road_name" th:text="${regularSmooth.road_name}" nowrap></td>
                                 <td nowrap>
-                                    <button class="delete" th:href="@{/regularSmooth/remove/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">删除</button>
+                                    <button class="delete" th:href="@{/regularSmooth/removeByRoad/{roadName}(roadName=${regularSmooth.road_name})}">删除</button>
                                     <button class="info" th:href="@{/regularSmooth/listAll/{regularSmoothNo}(regularSmoothNo=${regularSmooth.smooth_no})}">所有记录</button>
                                 </td>
                             </tr>
